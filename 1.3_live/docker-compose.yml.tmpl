@@ -14,6 +14,7 @@ services:
         ipv4_address: 172.10.3.100
     environment:
       MYSQL_ROOT_PASSWORD: %MYSQL_ROOT_PASSWORD%
+      MYSQL_ROOT_HOST: "%"
     volumes:
       - ./mysql:/var/lib/mysql
   redis:
@@ -34,12 +35,31 @@ services:
         ipv4_address: 172.10.3.102
     expose:
       - 80
+    ports:
+      - "0.0.0.0:8085:80"
     depends_on:
       - mysql
     volumes:
       - ./adminer:/var/www
     working_dir: /var/www
     command: php -S 0.0.0.0:80
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysql
+    networks:
+      default:
+        ipv4_address: 172.10.3.105
+    expose:
+      - 80
+    ports:
+      - "0.0.0.0:8087:80"
+    environment:
+      PMA_HOST: mysql
+      #PMA_ARBITRARY: 1
+      #PMA_PORT: 3306
+      #UPLOAD_LIMIT: 200M
 
   nodeserver:
     image: debian:11
@@ -59,6 +79,7 @@ services:
       <<: *mihoyo-variables
     command: ./nodeserver -i 1003.3.3.1
     stop_grace_period: 30s
+
   dbgate:
     image: debian:11
     restart: on-failure
@@ -76,6 +97,7 @@ services:
       <<: *mihoyo-variables
     command: ./dbgate -i 1003.4.4.1
     stop_grace_period: 30s
+
   dispatch:
     image: debian:11
     restart: on-failure
@@ -95,6 +117,7 @@ services:
       <<: *mihoyo-variables
     command: ./dispatch -i 1003.5.5.1
     stop_grace_period: 30s
+
   gateserver:
     image: debian:11
     restart: on-failure
@@ -114,6 +137,7 @@ services:
       <<: *mihoyo-variables
     command: ./gateserver -i 1003.1.1.1
     stop_grace_period: 30s
+
   gameserver:
     image: debian:11
     restart: on-failure
@@ -133,6 +157,7 @@ services:
       <<: *mihoyo-variables
     command: ./gameserver -i 1003.2.2.1
     stop_grace_period: 300s
+
   multiserver:
     image: debian:11
     restart: on-failure
@@ -149,6 +174,7 @@ services:
       <<: *mihoyo-variables
     command: ./multiserver -i 1003.7.7.1
     stop_grace_period: 300s
+
   muipserver:
     image: debian:11
     restart: on-failure
@@ -157,6 +183,8 @@ services:
         ipv4_address: 172.10.3.6
     expose:
       - 21051
+    ports:
+      - "0.0.0.0:21051:21051"
     depends_on:
       - dbgate
       - nodeserver
@@ -167,6 +195,7 @@ services:
       <<: *mihoyo-variables
     command: ./muipserver -i 1003.6.6.1
     stop_grace_period: 300s
+
   pathfindingserver:
     image: debian:11
     restart: on-failure
@@ -187,6 +216,7 @@ services:
       <<: *mihoyo-variables
     command: ./pathfindingserver -i 1003.8.8.1
     stop_grace_period: 180s
+
   oaserver:
     image: debian:11
     restart: on-failure
@@ -195,6 +225,8 @@ services:
         ipv4_address: 172.10.3.9
     expose:
       - 21091
+    ports:
+      - "0.0.0.0:21091:21091"
     profiles:
       - donotstart
     depends_on:
