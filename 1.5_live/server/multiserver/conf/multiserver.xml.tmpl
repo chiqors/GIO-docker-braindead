@@ -7,17 +7,16 @@
         <MaxLogLen value="8192" />
         <LogCutTime value="1440" />
         <LogKeepTime value="4320" />
-        <LogQueueSize value="512" />
         <LogBufSize value="2048" />
+        <LogQueueSize value="512" />
         <LogList>
-            <DebugFile path="log/multiserver.log" level="DEBUG INFO WARNING ERROR FATAL" />
-            <WarningFile path="log/multiserver.warning.log" level="WARNING ERROR FATAL" />
-            <ErrorFile path="log/multiserver.error.log" level="ERROR FATAL" />
+            <DebugFile path="log/multiserver.log" level="DEBUG INFO WARNING ERROR" />
+            <WarningFile path="log/multiserver.warning.log" level="WARNING ERROR" />
+            <ErrorFile path="log/multiserver.error.log" level="ERROR" />
             <CmdFile path="log/multiserver.cmd.log" level="CMD" />
             <MailStatFile path="log/mail.stat.log" level="MAIL_STAT" />
         </LogList>
     </LogConf>
-
 
     <!-- 网络配置 -->
     <NetConf>
@@ -33,7 +32,6 @@
             </ConnectList>
             <NoDelay value="true" />
             <AsyncSend value="true" CachePacketMaxNum="30000" />
-            <Reconnect min_interval="1000" max_interval="3000" />
         </NodeserverClientConf>
     </NetConf>
 
@@ -167,55 +165,53 @@
         <Db index="2001" name="" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_order" />
     </MysqlConf>
     <RedisConf>
-        <Db index="1" name="player_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="2" name="mail_box" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="3" name="offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="4" name="player_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="5" name="player_ask_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="6" name="player_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="7" name="player_blacklist" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="8" name="player_private_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="9" name="player_recent_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="10" name="player_private_chat_unread" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="11" name="player_activity_social" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="12" name="home_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="13" name="home_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="14" name="home_offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="15" name="offline_op" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="1" name="player_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="2" name="mail_box" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="3" name="offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="4" name="player_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="5" name="player_ask_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="6" name="player_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="7" name="player_blacklist" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="8" name="player_private_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="9" name="player_recent_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="10" name="player_private_chat_unread" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="11" name="player_activity_social" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="12" name="home_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="13" name="home_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="14" name="home_offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="15" name="offline_op" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
     </RedisConf>
 
     <!-- 分区配置 -->
-    <RegionConf name="dev_gio" />
+    <RegionConf name="dev_docker" />
 
     <!-- Service配置 -->
     <ServiceList>
-        <Mailservice name="mailservice" thread_num="1">
-            <StatLog stat_log_level="MAIL_STAT" thread_name="stat_log" stat_log_soft_limit="20000" stat_log_limit="50000" max_wait_time_us="1000000" max_busy_time_us="1000000"/>
+        <Mailservice name="mailservice" stat_log_level="MAIL_STAT" thread_num="1">
             <App app_id="1003.7.7.1" />
         </Mailservice>
-        <Mpservice name="mpservice" thread_num="1">
+        <Mpservice name="mpservice" stat_log_level="" thread_num="1">
             <App app_id="1003.7.7.1" />
         </Mpservice>
-        <OfflineMsgservice name="offlinemsgservice" thread_num="1">
+        <OfflineMsgservice name="offlinemsgservice" stat_log_level="" thread_num="1">
             <App app_id="1003.7.7.1" />
         </OfflineMsgservice>
-        <Activityservice name="activityservice" thread_num="1">
+        <Activityservice name="activityservice" stat_log_level="" thread_num="1">
             <App app_id="1003.7.7.1" />
         </Activityservice>
-        <Socialservice name="socialservice" thread_num="1">
+        <Socialservice name="socialservice" stat_log_level="" thread_num="1">
             <App app_id="1003.7.7.1" />
         </Socialservice>
-        <Matchservice name="matchservice" thread_num="1">
+        <Matchservice name="matchservice" stat_log_level="" thread_num="1">
             <App app_id="1003.7.7.1" />
         </Matchservice>
-        <OfflineOpservice name="offlineopservice" thread_num="1">
+        <OfflineOpservice name="offlineopservice" stat_log_level="" thread_num="1">
             <App app_id="1003.7.7.1" />
-        </OfflineOpservice>
+        </Matchservice>
     </ServiceList>
 
     <!-- 数值配置或邮件发放的各种资源单次产出数量上限 -->
-    <ItemOutputLimit>
-    </ItemOutputLimit>
+    <ItemOutputLimit></ItemOutputLimit>
 
     <!--
      进程列表配置
@@ -272,29 +268,17 @@
 
     <MysqlPoolMaxSize value ="0" />
     <RedisPoolMaxSize value ="0" />
-    <Tracing service_name ="multiserver" enabled="false"/>
-    <MemPerfConfig force_open="false" output_interval="1800" 
-       black_list="proto Watcher WeakptrObserver Event Ability Impl Comp Handler data::" white_list="BuffComp EquipComp GatherComp ActorAbility">
-      <MemPerfAppList>
-      </MemPerfAppList>
+
+    <Tracing service_name="multiserver" enabled="false" force_enable_perf_span="false">
+      <PerfSpanAppList></PerfSpanAppList>
+    </Tracing>
+    <MemPerfConfig force_open="false" output_interval="1800" black_list="proto Watcher WeakptrObserver Event Ability Impl Comp Handler">
+      <MemPerfAppList></MemPerfAppList>
     </MemPerfConfig>
     <CmdReportConfig force_open="false" output_interval="10">
-      <CmdReportAppList>
-      </CmdReportAppList>
+      <CmdReportAppList></CmdReportAppList>
     </CmdReportConfig>
-	<MonitorReport port="1056" svn_report_interval="0"/>
-    <CustomDungeon is_enable_verify="false" is_verify_ssl="false" 
-        verify_host="172.10.3.253" verify_port="80" verify_uri="/inner/verify/dungeon" 
-        verify_timeout="5" cache_max_size="500" 
-        cache_timeout="3600" recommend_timeout="10"
-        search_cache_max_size="200" search_cache_timeout="120"
-        old_recommend_num="10" new_recommend_num="13" />
-    <AsyncHttpClient thread="1" capacity="1000" />
-    <DataReadConfig is_readlink="true"/>
-    <TCMallocConfig output_tcmalloc_interval="30" tcmalloc_free_interval="0"/>
-    <MailConfig mail_message_max_size="200" max_batch_mail_count="40"/>
-	<AutoReloadConfig interval="1800" />
 
-    <!-- Service每帧处理协议数量配置：0表示不做限制每帧把队列中的所有协议都处理完 -->
-    <ServiceProcessPacketCountMax value="0" />
+    <MonitorReport port="1056" />
+	<AutoReloadConfig interval="1800" />
 </Root>

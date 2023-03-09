@@ -7,16 +7,13 @@
         <MaxLogLen value="8192" />
         <LogCutTime value="1440" />
         <LogKeepTime value="4320" />
-        <LogQueueSize value="85" />
-        <LogBufSize value="12288" />
+        <LogBufSize value="2048" />
+        <LogQueueSize value="512" />
         <LogList>
-            <DebugFile path="log/pathfindingserver.log" level="DEBUG INFO WARNING ERROR NOTICE FATAL" />
+            <DebugFile path="log/pathfindingserver.log" level="DEBUG INFO WARNING ERROR FATAL" />
             <WarningFile path="log/pathfindingserver.warning.log" level="WARNING ERROR FATAL" />
             <ErrorFile path="log/pathfindingserver.error.log" level="ERROR FATAL" />
             <CmdFile path="log/pathfindingserver.cmd.log" level="CMD" />
-            <NoticeFile path="log/pathfindingserver.notice.log" level="NOTICE" />
-            <TestPlayerFile path="log/pathfindingserver.test_player.log" level="TEST_PLAYER" />
-            <CpuProfiling path="log/pathfindingserver.cpu_profiling.log" level="CPU_PROFILING" />
         </LogList>
     </LogConf>
 
@@ -34,7 +31,6 @@
             <CutPacket value="1" />
             <NoDelay value="true" />
             <AsyncSend value="true" CachePacketMaxNum="30000" />
-            <Backlog value="2048" />
         </GateserverServerConf>
     </NetConf>
 
@@ -168,28 +164,28 @@
         <Db index="2001" name="" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_order" />
     </MysqlConf>
     <RedisConf>
-        <Db index="1" name="player_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="2" name="mail_box" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="3" name="offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="4" name="player_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="5" name="player_ask_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="6" name="player_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="7" name="player_blacklist" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="8" name="player_private_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="9" name="player_recent_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="10" name="player_private_chat_unread" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="11" name="player_activity_social" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="12" name="home_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="13" name="home_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="14" name="home_offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="15" name="offline_op" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="16" name="custom_dungeon" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="17" name="player_psn_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="18" name="player_psn_blacklist" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="1" name="player_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="2" name="mail_box" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="3" name="offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="4" name="player_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="5" name="player_ask_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="6" name="player_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="7" name="player_blacklist" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="8" name="player_private_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="9" name="player_recent_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="10" name="player_private_chat_unread" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="11" name="player_activity_social" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="12" name="home_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="13" name="home_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="14" name="home_offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="15" name="offline_op" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="16" name="custom_dungeon" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="17" name="player_psn_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="18" name="player_psn_blacklist" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
     </RedisConf>
 
     <!-- 分区配置 -->
-    <RegionConf name="dev_gio" />
+    <RegionConf name="dev_docker" />
 
     <ServiceList>
         <Pathfindingserver name="pathfindingserver" thread_num="2" />
@@ -254,49 +250,35 @@
         <!-- .nav所在目录 -->
         <DataDir name="../res/NavMesh/"/>
         <!-- 一个玩家世界保活时间 -->
-        <TokenKeepAliveMs value="3600000"/>
+        <TokenKeepAliveMs value="300000"/>
         <!-- 默认起点查询容许范围 -->
         <SourceExtend x="5" y="1.6" z="5"/>
         <!-- 默认目标查询容许范围 -->
         <TargetExtend x="5" y="3.75" z="5"/>
         <!-- 检查ActivtyNavmesh是否加载/卸载的时间间隔, 单位秒 -->
-        <RefreshMaxInterval value="900" />
-         <!-- 寻路请求超时打印日志, 单位毫秒 -->
-        <QueryPathReqTimeLimit value="500" />
-        <!-- 寻路请求容许范围限制 -->
-        <QueryPathReqExtendLimit x="20" y="20" z="20"/>
-        <!-- 寻路请求容许目标点数量限制 -->
-        <QueryPathReqTargetPointLimit value="10"/>
+        <RefreshMaxInterval value="120" />
         <!-- 动阻切割超时打印日志, 单位毫秒 -->
         <ObstacleTimeLimit value="60000" />
         <!-- 默认obstacle extent最大值 -->
         <MaxObstacleExtent value="128" />
-        <!-- 是否启用Havok切割方案 -->
-        <UseHavokCut value="true" />
-        <!-- Extend大于一定值的Obstacle打印一下Info日志, 方便定位问题-->
-        <ObstacleExtendLogLimit x="35" y="15" z="35"/>
-        <!-- 每个线程记录测试数据的玩家数量 -->
-        <TestPlayerCount value="0" />
-        <!-- cpu性能分析模式 0:不开启 1:只开启grafana基本分析 2:记录细节日志 -->
-        <CPUProfilingMode value="2" />
     </PathfindingConf>
+
     <MysqlPoolMaxSize value ="0" />
     <RedisPoolMaxSize value ="0" />
-    <Tracing service_name ="pathfindingserver" enabled="false"/>
+
+    <Tracing service_name="pathfindingserver" enabled="false" force_enable_perf_span="false">
+      <PerfSpanAppList></PerfSpanAppList>
+    </Tracing>
     <MemPerfConfig force_open="false" output_interval="1800"
        black_list="proto Watcher WeakptrObserver Event Ability Impl Comp Handler data::" white_list="BuffComp EquipComp GatherComp ActorAbility">
-      <MemPerfAppList>
-      </MemPerfAppList>
+      <MemPerfAppList></MemPerfAppList>
     </MemPerfConfig>
     <CmdReportConfig force_open="false" output_interval="10">
-      <CmdReportAppList>
-      </CmdReportAppList>
+      <CmdReportAppList></CmdReportAppList>
     </CmdReportConfig>
-	<MonitorReport port="1056" svn_report_interval="0"/>
-    <DataReadConfig is_readlink="true"/>
-    <TCMallocConfig output_tcmalloc_interval="30" tcmalloc_free_interval="0"/>
-  	<AutoReloadConfig interval="1800" />
 
-    <!-- Service每帧处理协议数量配置：0表示不做限制每帧把队列中的所有协议都处理完 -->
-    <ServiceProcessPacketCountMax value="0" />
+    <MonitorReport port="1056" svn_report_interval="120"/>
+  	<AutoReloadConfig interval="1800" />
+    <DataReadConfig is_readlink="true"/>
+    <TCMallocConfig output_tcmalloc_interval="300" tcmalloc_free_interval="0"/>
 </Root>

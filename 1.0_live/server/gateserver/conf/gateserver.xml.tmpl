@@ -3,16 +3,16 @@
     <BuildVersion value="202211072122" />
     <!-- 日志配置 -->
     <LogConf>
-        <LogLevelMask value="DEBUG" />
+        <LogLevel value="2" />
         <MaxLogLen value="8192" />
         <LogCutTime value="1440" />
         <LogKeepTime value="4320" />
-        <LogQueueSize value="100" />
-        <LogBufSize value="14336" />
+        <LogBufSize value="2048" />
+        <LogQueueSize value="512" />
         <LogList>
-            <DebugFile path="log/gateserver.log" level="DEBUG INFO WARNING ERROR NOTICE FATAL" />
-            <WarningFile path="log/gateserver.warning.log" level="WARNING ERROR FATAL" />
-            <ErrorFile path="log/gateserver.error.log" level="ERROR FATAL" />
+            <DebugFile path="log/gateserver.log" level="DEBUG INFO WARNING ERROR NOTICE" />
+            <WarningFile path="log/gateserver.warning.log" level="WARNING ERROR" />
+            <ErrorFile path="log/gateserver.error.log" level="ERROR" />
             <CmdFile path="log/gateserver.cmd.log" level="CMD" />
             <PacketFile path="log/gateserver.packet.log" level="PACKET" />
             <AntiCheatFile path="log/gateserver.anti.log" level="ANTI_CHEAT" />
@@ -20,11 +20,10 @@
         </LogList>
     </LogConf>
 
-
     <!-- 网络配置 -->
     <NetConf>
         <PlayerServerConf>
-            <MaxConnNum value="500" />
+            <MaxConnNum value="600" />
             <RecvBufLen value="24576" />
             <ThreadNum value="1" />
             <TimeoutSec value="30" />
@@ -32,8 +31,6 @@
             <WndSize value="256" />
             <KcpLogMask value="0" />
             <ConnectLimitPerSecondPerIp value="50" />
-            <WaitSndCheckInterval value="30" />
-            <WaitSndMax  value="10000" />
         </PlayerServerConf>
 
         <PlayerTcpServerConf>
@@ -48,7 +45,6 @@
             <NoDelay value="true" />
             <AsyncSend value="false"/>
             <PlayerServer value="1"/>
-            <Backlog value="2048" />
         </PlayerTcpServerConf>
 
         <!--Buff长度单位为K -->
@@ -64,7 +60,6 @@
             </ConnectList>
             <NoDelay value="true" />
             <AsyncSend value="true" CachePacketMaxNum="30000" />
-            <Reconnect min_interval="1000" max_interval="3000" />
         </GameserverClientConf>
 
         <DispatchClientConf>
@@ -79,7 +74,6 @@
             </ConnectList>
             <NoDelay value="true" />
             <AsyncSend value="true" CachePacketMaxNum="30000" />
-            <Reconnect min_interval="1000" max_interval="3000" />
         </DispatchClientConf>
 
         <PathfindingClientConf>
@@ -94,7 +88,6 @@
             </ConnectList>
             <NoDelay value="true" />
             <AsyncSend value="true" CachePacketMaxNum="30000" />
-            <Reconnect min_interval="1000" max_interval="3000" />
         </PathfindingClientConf>
     </NetConf>
 
@@ -183,85 +176,39 @@
         <Db index="3038" name="block_info_37" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
         <Db index="3039" name="block_info_38" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
         <Db index="3040" name="block_info_39" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4001" name="home_info_0" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4002" name="home_info_1" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4003" name="home_info_2" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4004" name="home_info_3" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4005" name="home_info_4" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4006" name="home_info_5" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4007" name="home_info_6" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4008" name="home_info_7" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4009" name="home_info_8" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4010" name="home_info_9" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4011" name="home_info_10" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4012" name="home_info_11" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4013" name="home_info_12" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4014" name="home_info_13" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4015" name="home_info_14" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4016" name="home_info_15" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4017" name="home_info_16" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4018" name="home_info_17" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4019" name="home_info_18" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4020" name="home_info_19" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4021" name="home_info_20" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4022" name="home_info_21" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4023" name="home_info_22" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4024" name="home_info_23" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4025" name="home_info_24" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4026" name="home_info_25" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4027" name="home_info_26" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4028" name="home_info_27" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4029" name="home_info_28" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4030" name="home_info_29" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4031" name="home_info_30" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4032" name="home_info_31" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4033" name="home_info_32" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4034" name="home_info_33" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4035" name="home_info_34" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4036" name="home_info_35" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4037" name="home_info_36" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4038" name="home_info_37" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4039" name="home_info_38" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
-        <Db index="4040" name="home_info_39" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
         <Db index="1001" name="" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_config" />
         <Db index="1002" name="" host="172.10.3.100" port="3306" user="hk4e_readonly" pwd="miHoYo2012" dbname="hk4e_db_deploy_config" />
         <Db index="2001" name="" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_order" />
     </MysqlConf>
     <RedisConf>
-        <Db index="1" name="player_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="2" name="mail_box" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="3" name="offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="4" name="player_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="5" name="player_ask_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="6" name="player_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="7" name="player_blacklist" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="1" name="player_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="2" name="mail_box" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="3" name="offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="4" name="player_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="5" name="player_ask_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="6" name="player_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="7" name="player_blacklist" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
     </RedisConf>
 
     <!-- 分区配置 -->
-    <RegionConf name="dev_gio" dev_sdk_account="false" />
+    <RegionConf name="dev_docker" dev_sdk_account="false" />
 
     <!-- 服务配置 -->
     <ServiceList>
-        <Gateserver name="gateserver" thread_num="1" async_http_thread="2" async_http_capacity="1000" />
+        <Gateserver name="gateserver" thread_num="1" stat_log_level="" async_http_thread="2" async_http_capacity="1000" />
     </ServiceList>
 
     <!-- 反脱机挂配置 -->
     <SecurityConfig>
-        <PlatformConfig platform_type="IOS" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" >
-        </PlatformConfig>
-        <PlatformConfig platform_type="ANDROID" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" >
-        </PlatformConfig>
-        <PlatformConfig platform_type="PC" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" >
-        </PlatformConfig>
-        <PlatformConfig platform_type="PS4" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" >
-        </PlatformConfig>
+        <PlatformConfig platform_type="IOS" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" />
+        <PlatformConfig platform_type="ANDROID" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" />
+        <PlatformConfig platform_type="PC" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" />
+        <PlatformConfig platform_type="PS4" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" />
         <LevelConfig check_type="1" down_grade_num="20" up_grade_num="5" />
-		<is_other_platform_need_check_anti_offline value="false"/>
-        <IsSecChannelOpen value="1"/>
+        <ForbidLoginResultType value="ANTI_OFFLINE_RESULT_EMPTY"/>
+        <ForbidLoginResultType value="ANTI_OFFLINE_RESULT_DECRYPT_FAIL"/>
+        <IsSecChannelOpen value="0"/>
         <IsChecksumVersionNotFoundForbidLogin value="0"/>
-		<IsCheckClientVerionHashFailForbidLogin value="0"/>
-        <RecvPacketFreqExceedLimitConfig is_enable="true" log_interval="600" log_limit="10"/>
-        <SinglePacketFreqExceedLimitConfig is_enable="true" log_interval="600" log_limit="10"/>
     </SecurityConfig>
 
     <!--
@@ -327,35 +274,11 @@
                        threshold_load_1="20"
                        choose_add_load="1"
     />
+
     <MysqlPoolMaxSize value ="0" />
     <RedisPoolMaxSize value ="0" />
-    <IsSkipSDKVerifyWhenHttpFailed value ="false" />
-    <!-- SDK重试鉴权相关配置 -->
-    <RetrySDKVerifyConfig   is_retry_when_http_error="false"
-                            retry_sdk_verify_second="10"
-                            is_kickout_when_retry_fail="true"
-    />
-    <!-- SDK鉴权域名灰度相关配置 -->
-    <SDKVerifyHostDarkRelease host="" weight="0"/>
-    <isTamperClientMsg value ="false" />
-    <Tracing service_name ="gateserver" enabled="false" force_enable_perf_span="false">
-      <PerfSpanAppList>
-      </PerfSpanAppList>
-    </Tracing>
-    <MemPerfConfig force_open="false" output_interval="1800" 
-       black_list="proto Watcher WeakptrObserver Event Ability Impl Comp Handler data::" white_list="BuffComp EquipComp GatherComp ActorAbility">
-      <MemPerfAppList>
-      </MemPerfAppList>
-    </MemPerfConfig>
-    <CmdReportConfig force_open="false" output_interval="10">
-      <CmdReportAppList>
-      </CmdReportAppList>
-    </CmdReportConfig>
-	<MonitorReport port="1056" svn_report_interval="0"/>
-    <DataReadConfig is_readlink="true"/>
-    <TCMallocConfig output_tcmalloc_interval="30" tcmalloc_free_interval="0"/>
-	<AutoReloadConfig interval="1800" />
 
-    <!-- Service每帧处理协议数量配置：0表示不做限制每帧把队列中的所有协议都处理完 -->
-    <ServiceProcessPacketCountMax value="0" />
+    <IsSkipSDKVerifyWhenHttpFailed value ="true" />
+    
+	<AutoReloadConfig interval="1800" />
 </Root>

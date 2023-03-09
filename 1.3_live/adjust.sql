@@ -14,7 +14,6 @@ UPDATE `t_activity_schedule_config` SET `end_time` = ADDTIME(@NOW, TIMEDIFF(`end
 
 UPDATE `t_gacha_schedule_config` SET `begin_time` = @NOW WHERE `schedule_id` IN (31);
 UPDATE `t_gacha_schedule_config` SET `begin_time` = ADDDATE(@NOW, INTERVAL '28 00:00:01' DAY_SECOND) WHERE `schedule_id` IN (32);
-UPDATE `t_gacha_schedule_config` SET `begin_time` = ADDDATE(@NOW, INTERVAL '42 00:00:01' DAY_SECOND) WHERE  `schedule_id` IN (33);
-UPDATE `t_gacha_schedule_config` SET `begin_time` = ADDDATE(@NOW, INTERVAL '42 00:00:01' DAY_SECOND) WHERE `schedule_id` IN (33);
+UPDATE `t_gacha_schedule_config` SET `begin_time` = ADDDATE(@NOW, INTERVAL '42 00:00:02' DAY_SECOND) WHERE `schedule_id` IN (33);
 UPDATE `t_gacha_schedule_config` SET `end_time` = ADDDATE(`begin_time`, INTERVAL 14 DAY) WHERE `schedule_id` IN (31,32,33);
 UPDATE `t_gacha_schedule_config` SET `end_time` = ADDDATE(`begin_time`, INTERVAL 21 DAY) WHERE `schedule_id` IN (34,35);

@@ -7,8 +7,8 @@
         <MaxLogLen value="8192" />
         <LogCutTime value="1440" />
         <LogKeepTime value="4320" />
-        <LogQueueSize value="170" />
-        <LogBufSize value="24576" />
+        <LogBufSize value="2048" />
+        <LogQueueSize value="512" />
         <LogList>
             <DebugFile path="log/gameserver.log" level="DEBUG INFO WARNING ERROR NOTICE FATAL FIGHT_DEBUG FIGHT_INFO FIGHT_WARNING VIEW_DEBUG" />
             <WarningFile path="log/gameserver.warning.log" level="WARNING ERROR FATAL" />
@@ -26,7 +26,6 @@
         </LogList>
     </LogConf>
 
-
     <!-- 网络配置 -->
     <NetConf>
         <!-- 面向gateserver的server -->
@@ -42,12 +41,11 @@
             <RefuseRepeatIp value="1" />
             <NoDelay value="true" />
             <AsyncSend value="true" CachePacketMaxNum="30000" />
-            <Backlog value="2048" />
         </GateserverServerConf>
 
         <NodeserverClientConf>
-            <RecvBufLen   value="1300" />
-            <MaxSendPacketLen value="1024" />
+            <RecvBufLen   value="600" />
+            <MaxSendPacketLen value="512" />
             <ThreadNum value="1" />
             <KeepAliveSec value="10" />
             <TimeoutSec   value="30" />
@@ -57,7 +55,6 @@
             </ConnectList>
             <NoDelay value="true" />
             <AsyncSend value="true" CachePacketMaxNum="30000"/>
-            <Reconnect min_interval="1000" max_interval="3000" />
         </NodeserverClientConf>
     </NetConf>
 
@@ -191,36 +188,35 @@
         <Db index="2001" name="" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_order" />
     </MysqlConf>
     <RedisConf>
-        <Db index="1" name="player_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="2" name="mail_box" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="3" name="offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="4" name="player_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="5" name="player_ask_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="6" name="player_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="7" name="player_blacklist" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="8" name="player_private_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="9" name="player_recent_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="10" name="player_private_chat_unread" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="11" name="player_activity_social" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="12" name="home_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="13" name="home_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="14" name="home_offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="15" name="offline_op" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="16" name="custom_dungeon" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="17" name="player_psn_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
-        <Db index="18" name="player_psn_blacklist" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="1" name="player_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="2" name="mail_box" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="3" name="offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="4" name="player_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="5" name="player_ask_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="6" name="player_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="7" name="player_blacklist" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="8" name="player_private_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="9" name="player_recent_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="10" name="player_private_chat_unread" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="11" name="player_activity_social" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="12" name="home_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="13" name="home_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="14" name="home_offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="15" name="offline_op" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="17" name="player_psn_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
+        <Db index="18" name="player_psn_blacklist" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7"/>
     </RedisConf>
 
     <!-- 分区配置 分区名, 是否是提审服,是否是国服 -->
-    <RegionConf name="dev_gio" is_audit="false" is_internal_server="true"/>
+    <RegionConf name="dev_docker" is_audit="false" is_internal_server="false" />
 
     <!-- 服务配置 -->
     <ServiceList>
-        <Gameserver name="gameserver" thread_num="2" async_thread_num="2" warn_online_player="80" max_online_player="100" session_timeout="120" brief_data_upload_interval="300" lua_gc_interval="30">
+        <Gameserver name="gameserver" thread_num="4" async_thread_num="9" warn_online_player="300" max_online_player="500" session_timeout="120" brief_data_upload_interval="300" lua_gc_interval="30">
             <Save max_save_time_interval="180"
-				timer_save_time_interval="120"
+                timer_save_time_interval="120"
                 allow_send_save_proto_cost_time_ms="100"
-				hard_limit_send_save_proto_cost_time_ms="500"
+                hard_limit_send_save_proto_cost_time_ms="500"
                 normal_save_check_interval="20"
                 shutdown_save_check_interval="3"
                 player_save_timeout_after_send_proto="5"
@@ -230,23 +226,21 @@
                 home_no_player_destroy_time ="600"                
                 player_save_when_gacha="true"
                 player_save_when_recharge="true"
-				is_async_save="true"
-				is_gacha_player_save_check_item_type="true"
-                warn_bin_len ="320000"
-                max_bin_len ="350000"
-                warn_block_bin_len ="400000"
-				max_block_bin_len ="430000" 
-                warn_sum_bin_len ="720000"
-				max_sum_bin_len ="780000" 
+                warn_bin_len ="220000"
+                max_bin_len ="250000"
+                warn_block_bin_len ="220000"
+                max_block_bin_len ="250000" 
+                warn_sum_bin_len ="440000"
+                max_sum_bin_len ="500000" 
                 warn_home_bin_len ="150000"
-				max_home_bin_len ="180000"/>
+                max_home_bin_len ="180000"/>
             <PushTags is_ssl="False"            
                         host="172.10.3.253"            
                         port="80"            
                         uri="/inner/combo/postman/device/setUserTags"           
                 />
-            <StatLog stat_log_level="STAT_PLAYER" thread_name="stat_log" stat_log_soft_limit="10000" stat_log_limit="20000"  max_wait_time_us="1000000" max_busy_time_us="1000000"/>
-            <StatLog stat_log_level="STAT_FIGHT" thread_name="fight_stat_log" stat_log_soft_limit="10000" stat_log_limit="20000"  max_wait_time_us="1000000" max_busy_time_us="1000000"/>
+            <StatLog stat_log_level="STAT_PLAYER" thread_name="stat_log" stat_log_soft_limit="10000" stat_log_limit="20000" />
+            <StatLog stat_log_level="STAT_FIGHT" thread_name="fight_stat_log" stat_log_soft_limit="10000" stat_log_limit="20000" />
         </Gameserver>
     </ServiceList>
 
@@ -256,23 +250,23 @@
     <!-- 是否开启Ability哈希码传输 -->
     <AbilityHash open="true" />
 
+    <!-- 协程超时 -->
+    <Coroutine timeout="10000" />
+
     <!-- 是否开启GmTalk -->
     <GmTalk open="true" />
 
     <!-- 是否禁止进入璃月, 默认关闭 -->
     <CheckUnexpectedPos open="false" />
 
+    <!-- 是否开启entity相关debug日志 EntityAppear和EntityDisappear -->
+    <EntityDebugLog open="false" />
+
     <!-- 是否开启快速模拟养成指令 -->
     <SimulationOpen open="false" />
 
-	<!-- 是否开启entity相关debug日志 EntityAppear和EntityDisappear -->
-	<EntityDebugLog open="false" />
-
-	<!-- 是否在埋点中上报客户端port -->
-	<IpPortLogReport open="true" />
-
     <!-- 是否开启高频日志 -->
-    <HighFreqPacketLog open="false" packet_log_black_list="UnionCmdNotify SceneEntitiesMovesReq AbilityInvocationsNotify CombatInvocationsNotify SceneEntityDisappearNotify SceneEntityAppearNotify ClientAbilitiesInitFinishCombineNotify GmTalkReq GmTalkRsp HomeUpdateArrangementInfoReq HomeGetArrangementInfoRsp EvtAiSyncCombatThreatInfoNotify EvtAiSyncSkillCdNotify ClientAbilityInitFinishNotify EntityFightPropChangeReasonNotify" />
+    <HighFreqPacketLog open="false" packet_log_black_list="UnionCmdNotify SceneEntitiesMovesReq AbilityInvocationsNotify CombatInvocationsNotify SceneEntityAppearNotify ClientAbilitiesInitFinishCombineNotify GmTalkReq GmTalkRsp HomeUpdateArrangementInfoReq HomeGetArrangementInfoRsp EvtAiSyncCombatThreatInfoNotify EvtAiSyncSkillCdNotify ClientAbilityInitFinishNotify EntityFightPropChangeReasonNotify" />
 
     <!-- 产出监控告警HTTP POST请求地址-->
     <OutputControlMonitor host="172.10.3.253" port="80" uri="/inner/monitor" is_ssl="0" />
@@ -285,46 +279,33 @@
         <Vision level="超级视距" vision_range="4000" grid_width="1000" />
         <Vision level="近视距" vision_range="40" grid_width="20" />
     </VisionList>
+
     <!-- 场景实体数量限制 -->
     <SceneEntityNumLimit warn_num="19999" error_num="49999"/>
+
     <!-- ModifierId限制 -->
     <ModifierIdLimit error_num="1999"/>
+
     <!-- Group限制 -->
-    <GroupLimit max_unload_time_us="5001"
+    <GroupLimit max_unload_time_us="5000"
                 forbid_find_unregister_group="true"
                 unload_invalid_groups_interval="5"
                 unload_invalid_groups_threshold="250"
-                delete_reload_pos_when_disconnect="false"
-                home_group_load_forbid_async_load="true"
-                ignore_mutual_replace_check="false"
-                forbid_special_region_trigger_group_load="false"
-                forbid_special_vision_type_control_group_load="false" />
-    <!-- LuaScript缓存数量告警日志数量 -->
-    <LuaScriptCacheNumLimit warn_num="1000"
-                            error_num="2000"
-                            clear_num="500"
-                            clear_time="300"
-                            clear_min_num="100" />
+                delete_reload_pos_when_disconnect="false" />
 
-    <ServerErrorNotify rate_limit="64" />
+    <ServerErrorNotify rate_limit="16" />
+
     <AbilityConfig is_client_anticheat_report_open="false" />
-    <VisionConf is_delete_in_sight_when_appear="true" />
-    <CustomDungeon cache_timeout="60" enable_layout_check="true"
-        min_enter_interval="1" min_recommend_interval="1"
-        min_social_interval="1" store_cache_timeout="60" />
-    <FightConf is_abyss_kill_limbo_monster="true" />
 
     <!-- 伤害限制 -->
     <AntiCheatDamage max_damage="9999999.0" max_damage_percentage="99.9" 
         max_damage_percentage_ratio="99.9" max_damage_extra="99999.0" is_open="true" />
+
     <!-- 数值配置或邮件发放的各种资源单次产出数量上限 -->
-    <ItemOutputLimit>
-    </ItemOutputLimit>
+    <ItemOutputLimit></ItemOutputLimit>
 
     <!-- 产出监控和产出控制相关开关 -->
-    <ItemOutputConfig is_output_limit_can_alarm="false"
-                      is_output_control_can_alarm="false"
-                      is_enable_extra_white_list="false" />
+    <ItemOutputConfig is_output_limit_can_alarm="false" is_output_control_can_alarm="false"/>
 
     <!--热云广告监测平台-->
     <TrackingIOConfig host="172.10.3.253" 
@@ -335,15 +316,6 @@
                       ANDROID="e84aee04f6bbbf665eec0a3921c1b2da" 
                       IOS="fa8212ef87c98d1c52e1dad256641d9a" />
 
-    <!--adjust广告监测平台-->
-    <AdjustTrackingConfig host="172.10.3.253" 
-                      port="80" 
-                      uri="/inner/adjust/event" 
-                      is_ssl="false" 
-                      is_enable="false"
-                      ANDROID="lng1hl9gf2tc" 
-                      IOS="dungupko1zpc" />
-
     <!-- 客户端数值版本号不是最新是否禁止联机 -->
     <ClientDataVersionNotLatestBanMp open="false" />
 
@@ -352,20 +324,29 @@
     <!-- 安全相关配置 -->
     <SecurityConfig>
         <PlatformConfig platform_type="IOS" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" >
+            <ForbidLoginResultType value="ANTI_OFFLINE_RESULT_EMPTY"/>
+            <ForbidLoginResultType value="ANTI_OFFLINE_RESULT_DECRYPT_FAIL"/>
         </PlatformConfig>
         <PlatformConfig platform_type="ANDROID" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" >
+            <ForbidLoginResultType value="ANTI_OFFLINE_RESULT_DECRYPT_FAIL"/>
         </PlatformConfig>
         <PlatformConfig platform_type="PC" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" >
+            <ForbidLoginResultType value="ANTI_OFFLINE_RESULT_EMPTY"/>
+            <ForbidLoginResultType value="ANTI_OFFLINE_RESULT_DECRYPT_FAIL"/>
         </PlatformConfig>
         <PlatformConfig platform_type="PS4" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" >
+            <ForbidLoginResultType value="ANTI_OFFLINE_RESULT_EMPTY"/>
+            <ForbidLoginResultType value="ANTI_OFFLINE_RESULT_DECRYPT_FAIL"/>
         </PlatformConfig>
-        <PlatformConfig platform_type="PS5" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" >
+        <PlatformConfig platform_type="PS5" is_anti_offline_open="false" forbid_login_level="0" max_check_level="0" >
+            <ForbidLoginResultType value="ANTI_OFFLINE_RESULT_EMPTY"/>
+            <ForbidLoginResultType value="ANTI_OFFLINE_RESULT_DECRYPT_FAIL"/>
         </PlatformConfig>
         <LevelConfig check_type="1" down_grade_num="20" up_grade_num="5" />
-        <is_other_platform_need_check_anti_offline value="false"/>
+        <is_other_platform_need_check_anti_offline value="true"/>
         <IsSecChannelOpen value="1"/>
-        <IsChecksumVersionNotFoundForbidLogin value="0"/>
-        <IsSegmentCrcOpen value="0"/>
+        <IsChecksumVersionNotFoundForbidLogin value="1"/>
+        <IsSegmentCrcOpen value="1"/>
         <IsChecksumVersionNotFoundSegmentCrcDefaultOpen value="0"/>
         <SegmentCrcMaxInteractCount value="20"/>
         <SegmentCrcConfig>
@@ -390,19 +371,19 @@
         <IsSceneTimeMoveSpeedCheckKickPlayer value="0"/>
         <IsSceneTimeMoveSpeedCheckDragPlayer value="true"/>
         <AbilityConfigHashWhitelist is_open="true" value=""/>
-        <IsEnableClientHashDebug value="true"/>
+        <IsEnableClientHashDebug value="false"/>
         <UnityEngineTimescaleLimit value="2"/>
-        <is_forbid_monster_disallowed_death value="false"/>
-        <is_move_back_monster_on_forbid_death value="false"/>
-        <is_revive_monster_on_forbid_death value="false"/>
-        <is_use_server_override_map value="false"/>
-        <is_use_server_dynamic_value value="false"/>
+        <is_forbid_monster_disallowed_death value="true"/>
+        <is_move_back_monster_on_forbid_death value="true"/>
+        <is_revive_monster_on_forbid_death value="true"/>
+        <is_use_server_override_map value="true"/>
+        <is_use_server_dynamic_value value="true"/>
         <is_mouse_macro_check_open value="true"/>
         <EnvironmentErrorConfig>
-            <EnvironmentPlatformConfig platform_type="IOS" is_open="true" is_check_black_regex="false" white_regex=".{2}00.*" black_regex=".{2}(11|54|13).*"/>
-            <EnvironmentPlatformConfig platform_type="ANDROID" is_open="true" is_check_black_regex="false" white_regex=".{2}00.*" black_regex=".{2}(11|54|13).*"/>
-            <EnvironmentPlatformConfig platform_type="PC" is_open="true" is_check_black_regex="false" white_regex=".{2}00.*" black_regex=".{2}(11|54|13).*"/>
-            <EnvironmentPlatformConfig platform_type="PS4" is_open="true" is_check_black_regex="false" white_regex=".{2}00.*" black_regex=".{2}(11|54|13).*"/>
+            <EnvironmentPlatformConfig platform_type="IOS" is_open="true" is_check_black_regex="true" white_regex=".{2}00.*" black_regex=".{2}11.*"/>
+            <EnvironmentPlatformConfig platform_type="ANDROID" is_open="true" is_check_black_regex="true" white_regex=".{2}00.*" black_regex=".{2}11.*"/>
+            <EnvironmentPlatformConfig platform_type="PC" is_open="true" is_check_black_regex="true" white_regex=".{2}00.*" black_regex=".{2}11.*"/>
+            <EnvironmentPlatformConfig platform_type="PS4" is_open="true" is_check_black_regex="true" white_regex=".{2}00.*" black_regex=".{2}11.*"/>
         </EnvironmentErrorConfig>
         <SafeServerConfig>
             <ConnectionStatusNotifyConfig enable="false" host="172.10.3.253" port="80"
@@ -426,42 +407,30 @@
                 <entry platform_type="CLOUD_PC" security_platform_type="Unkown"/>
             </SecurityPlatformMap>
         </SafeServerConfig>
-        <CheckQiandaoguaConfig is_enable="true" attack_count_limit="4" record_entry_limit="100" anticheat_log_limit="10000"/>
-        <ClientTotalTickTimeConfig max_delay_time="10" anticheat_log_limit="10000"/>
-        <ClientServerGlobalValueConfig is_open="true" sgv_name="SGV_CAN_CLEAR_THREAT" timeout_seconds="10" anticheat_log_limit="10000"/>
+        <CheckQiandaoguaConfig is_enable="true" attack_count_limit="4" record_entry_limit="100" anticheat_log_limit="100"/>
+        <ClientTotalTickTimeConfig max_delay_time="30" anticheat_log_limit="100"/>
+        <ClientServerGlobalValueConfig is_open="true" sgv_name="SGV_CAN_CLEAR_THREAT" timeout_seconds="10" anticheat_log_limit="100"/>
         <StaminaCheckConfig is_enable="true" record_limit="-50" low_limit="-500" anticheat_log_limit="100"/>
-        <PacketCostTimeExceedLimitConfig is_enable="true" log_interval="60" log_limit="10" packet_cost_time_limit_us="10000" check_interval_ms="5000" cost_time_percent="20" is_enable_kick="true" kick_time_percent="80" check_kick_interval="60" trigger_kick_count="2" thread_kick_interval="60"/>
-        <GadgetInteractBeyondCheckDistanceConfig is_enable="true" log_interval="60" log_limit="1" min_record_count="5"/>
-        <LuaShellSecurityConfig is_check_timeout_open="true" lua_shell_timeout_seconds="60"/>
-        <AttackDamageReportConfig is_enable="true" log_interval="60" log_limit="10" min_report_damage="0.0" />
+        <PacketCostTimeExceedLimitConfig is_enable="true" log_interval="600" log_limit="10" packet_cost_time_limit_us="10000"/>
     </SecurityConfig>
 
     <HomeVerify host="172.10.3.253" 
                       port="80" 
                       uri="/inner/verify/home" 
+                      uri_zip="/inner/record/home" 
                       is_ssl="False" 
                       is_enable="False"
+                      is_compress_enable="True"
                       is_detail_log="True"
-                      token="3b0f517ab4044fb06339361f0b18c7f5" />
+                      num_limit="7" 
+                      size_limit="10000" />
 
-    <NicknameSignAudit host="172.10.3.253" 
-                      port="80" 
-                      uri="/inner/audit/call" 
-                      is_ssl="False"
-                      timeout="5"
-                      language="en-us"
-                      queue_key="hk4e_nickname_sign" />
-
-    <!-- 活动定时器注册的interval随机时间配置 -->
-    <ActivityTimerIntervalRandTime value="30" />
-					  
     <!-- 异步Http请求配置 -->
     <AsyncHttpClient thread="1" 
                      capacity="1000"
                      first_login_nickname_capacity="1000"
                      home_verify_post_capacity="1000"
-                     safe_server_capacity="1000"
-                     output_control_monitor_capacity="1000" />
+                     safe_server_capacity="1000" />
 
     <!--
      进程列表配置
@@ -520,35 +489,27 @@
     <RedisPoolMaxSize value ="0" />
 
     <!-- 限频 -->
-    <RateLimit login="10" is_cal_login_load="True" />
+    <RateLimit login="10" />
 
-    <Tracing service_name ="gameserver" enabled="false" force_enable_perf_span="false">
-      <PerfSpanAppList>
-      </PerfSpanAppList>
+    <Tracing service_name="gameserver" enabled="false" force_enable_perf_span="false">
+      <PerfSpanAppList></PerfSpanAppList>
     </Tracing>
     <MemPerfConfig force_open="false" output_interval="1800" 
        black_list="proto Watcher WeakptrObserver Event Ability Impl Comp Handler data::" white_list="BuffComp EquipComp GatherComp ActorAbility">
-      <MemPerfAppList>
-      </MemPerfAppList>
+      <MemPerfAppList></MemPerfAppList>
     </MemPerfConfig>
     <CmdReportConfig force_open="false" output_interval="10">
-      <CmdReportAppList>
-      </CmdReportAppList>
+      <CmdReportAppList></CmdReportAppList>
     </CmdReportConfig>
 
-  <!-- 协程 -->
-  <Coroutine timeout="10000" force_open="false" >
-    <CoroutineAppList>
-    </CoroutineAppList>
-  </Coroutine>
-  <MonitorReport port="1056" svn_report_interval="0"/>
-  <DataReadConfig is_readlink="true"/>
-  <Grid is_destory="true" is_use_pool="false" />
-  <TCMallocConfig output_tcmalloc_interval="30" tcmalloc_free_interval="0"/>
-  <LuaMemoryReport lua_memory_report_interval="30"/>
-  <NewLanguageConfig is_enable_setting_new_language="false" new_language_type_list="LANGUAGE_TR LANGUAGE_IT"/>
-  <AutoReloadConfig interval="1800" />
-
-  <!-- Service每帧处理协议数量配置：0表示不做限制每帧把队列中的所有协议都处理完 -->
-  <ServiceProcessPacketCountMax value="1000" />
+    <!-- 协程 -->
+    <Coroutine timeout="10000" force_open="false" >
+        <CoroutineAppList></CoroutineAppList>
+    </Coroutine>
+    <MonitorReport port="1056" svn_report_interval="120"/>
+    <DataReadConfig is_readlink="true"/>
+    <Grid is_destory="true" is_use_pool="true" />
+    <TCMallocConfig output_tcmalloc_interval="300" tcmalloc_free_interval="0"/>
+    <LuaMemoryReport lua_memory_report_interval="90"/>
+    <AutoReloadConfig interval="1800" />
 </Root>

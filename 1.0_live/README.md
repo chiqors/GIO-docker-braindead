@@ -14,7 +14,7 @@
 - Adminer instance is available on `172.10.3.102`
 - SDK server has password verification _disabled_ by default; use `enable_password_verify` option in `config.json` to control it
 - SDK server has guest accounts _enabled_ by default; use `enable_server_guest` option in `config.json` to control it
-- Services have `DEBUG` logs masked (disabled) by default; use `Root.LogConf.LogLevelMask` option to control it
+- Services have `DEBUG` logs masked (disabled) by default; use `Root.LogConf.LogLevel` option to control it
 
 ## RSA keys
 ### Password
