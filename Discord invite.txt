@@ -1,0 +1,5 @@
+If you have any troubles - you can ask in #gio-best-server in:
+
+https://discord.gg/MfxYRNdD9x
+
+Also, please read README.md in every server config folder
