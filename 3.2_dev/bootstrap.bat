@@ -13,6 +13,9 @@ docker compose rm -f
 RD /S /Q mysql
 RD /S /Q redis
 
+REM Remove all unused networks. Unused networks are those which are not referenced by any containers
+docker network prune -f
+
 docker compose -f docker-preinstall.yml up preparevars
 docker compose -f docker-preinstall.yml kill preparevars
 docker compose -f docker-preinstall.yml rm -f preparevars
