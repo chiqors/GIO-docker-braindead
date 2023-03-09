@@ -13,8 +13,6 @@ services:
     networks:
       default:
         ipv4_address: 172.10.3.100
-    environment:
-      MYSQL_ROOT_PASSWORD: %MYSQL_ROOT_PASSWORD%
     volumes:
       - ./mysql:/var/lib/mysql
   redis:
