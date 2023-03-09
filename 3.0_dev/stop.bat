@@ -1,0 +1,2 @@
+docker compose kill
+pause
