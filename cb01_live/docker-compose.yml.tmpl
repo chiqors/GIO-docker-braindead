@@ -37,7 +37,7 @@ services:
     expose:
       - 80
     ports:
-      - "0.0.0.0:8085:80"
+      - "%OUTER_IP%:8085:80"
     depends_on:
       - mysql
     volumes:
@@ -55,7 +55,7 @@ services:
     expose:
       - 80
     ports:
-      - "0.0.0.0:8087:80"
+      - "%OUTER_IP%:8087:80"
     environment:
       PMA_HOST: mysql
       #PMA_ARBITRARY: 1
@@ -80,6 +80,12 @@ services:
       <<: *mihoyo-variables
     command: ./nodeserver
     stop_grace_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '%CPU_USAGE_LIMIT%'
+        reservations:
+          cpus: '%CPU_USAGE_LIMIT%'
 
   dbgate:
     image: debian:11
@@ -98,6 +104,12 @@ services:
       <<: *mihoyo-variables
     command: ./dbgate
     stop_grace_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '%CPU_USAGE_LIMIT%'
+        reservations:
+          cpus: '%CPU_USAGE_LIMIT%'
 
   dispatch:
     image: debian:11
@@ -118,6 +130,12 @@ services:
       <<: *mihoyo-variables
     command: ./dispatch
     stop_grace_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '%CPU_USAGE_LIMIT%'
+        reservations:
+          cpus: '%CPU_USAGE_LIMIT%'
 
   gateserver:
     image: debian:11
@@ -128,7 +146,7 @@ services:
     expose:
       - 21081/udp
     ports:
-      - "0.0.0.0:21081:21081/udp"
+      - "%OUTER_IP%:21081:21081/udp"
     depends_on:
       - dbgate
     volumes:
@@ -138,6 +156,12 @@ services:
       <<: *mihoyo-variables
     command: ./gateserver
     stop_grace_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '%CPU_USAGE_LIMIT%'
+        reservations:
+          cpus: '%CPU_USAGE_LIMIT%'
 
   gameserver:
     image: debian:11
@@ -158,6 +182,12 @@ services:
       <<: *mihoyo-variables
     command: ./gameserver
     stop_grace_period: 300s
+    deploy:
+      resources:
+        limits:
+          cpus: '%CPU_USAGE_LIMIT%'
+        reservations:
+          cpus: '%CPU_USAGE_LIMIT%'
 
   multiserver:
     image: debian:11
@@ -175,6 +205,12 @@ services:
       <<: *mihoyo-variables
     command: ./multiserver
     stop_grace_period: 300s
+    deploy:
+      resources:
+        limits:
+          cpus: '%CPU_USAGE_LIMIT%'
+        reservations:
+          cpus: '%CPU_USAGE_LIMIT%'
 
   muipserver:
     image: debian:11
@@ -185,7 +221,7 @@ services:
     expose:
       - 21051
     ports:
-      - "0.0.0.0:21051:21051"
+      - "%OUTER_IP%:21051:21051"
     depends_on:
       - dbgate
       - nodeserver
@@ -196,6 +232,12 @@ services:
       <<: *mihoyo-variables
     command: ./muipserver
     stop_grace_period: 300s
+    deploy:
+      resources:
+        limits:
+          cpus: '%CPU_USAGE_LIMIT%'
+        reservations:
+          cpus: '%CPU_USAGE_LIMIT%'
 
   sdk:
     build:
@@ -206,7 +248,7 @@ services:
       default:
         ipv4_address: 172.10.3.253
     ports:
-      - "0.0.0.0:21000:80"
+      - "%OUTER_IP%:21000:80"
     volumes:
       - ./sdk:/app
 

@@ -227,7 +227,7 @@
     <!-- 客户端数值版本号不是最新是否禁止联机 -->
     <ClientDataVersionNotLatestBanMp open="false" />
 
-	<UnionPacket max_freq="8000" union_notify_max_freq="200" combat_notify_max_freq="1500" union_packet_kick_cheat_count="10"/>
+    <UnionPacket max_freq="8000" union_notify_max_freq="200" combat_notify_max_freq="1500" union_packet_kick_cheat_count="10"/>
 
     <!-- 安全相关配置 -->
     <SecurityConfig>
@@ -303,5 +303,5 @@
     <!-- 限频 -->
     <RateLimit login="10" />
 
-    <AutoReloadConfig interval="1800" />
+    <AutoReloadConfig interval="%RELOAD_CONFIG_INTERVAL%" />
 </Root>
