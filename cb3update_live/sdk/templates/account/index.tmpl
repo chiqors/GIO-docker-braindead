@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <title></title>
+
+    <script>
+      if (window.location.hash.startsWith('#/register')) {
+        window.location.replace('/account/register');
+      } else if (window.location.hash.startsWith('#/forgetPassword')) {
+        window.location.replace('/account/recover');
+      }
+    </script>
+  </head>
+</html>

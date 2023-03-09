@@ -1,0 +1,19 @@
+{
+  "app": {
+    "listen": "0.0.0.0",
+    "port": 80,
+    "debug": false,
+    "secret_key": "%FLASK_SECRET_KEY%"
+  },
+  "dispatch": {
+    "global": "http://172.10.3.5:21041",
+    "local": {
+      "dev_docker": "http://172.10.3.5:21041"
+    }
+  },
+  "security": {
+    "bcrypt_cost": 12,
+    "token_length": 32,
+    "min_password_len": 8
+  }
+}

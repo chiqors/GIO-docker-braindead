@@ -1,0 +1,425 @@
+SET NAMES utf8;
+SET time_zone = '+00:00';
+SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+
+SET NAMES utf8mb4;
+
+
+USE `hk4e_db_config`;
+
+
+CREATE TABLE `t_activity_data` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `activity_id` int(4) unsigned NOT NULL,
+  `schedule_id` int(4) unsigned NOT NULL,
+  `activity_type` int(4) unsigned NOT NULL COMMENT '活动类型，避免策划activity_id做新的活动',
+  `bin_data` blob NOT NULL COMMENT '使用protobuf序列化后的二进制字段',
+  `update_time` datetime NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `activity_schedule_id` (`activity_id`,`schedule_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='全服活动存档数据';
+
+
+CREATE TABLE `t_announce_config` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `begin_time` datetime NOT NULL COMMENT '开始时间',
+  `end_time` datetime NOT NULL COMMENT '结束时间',
+  `center_system_text` varchar(200) NOT NULL DEFAULT '' COMMENT '中央系统提示文本',
+  `count_down_text` varchar(200) NOT NULL DEFAULT '' COMMENT '倒计时提示文本',
+  `dungeon_confirm_text` varchar(200) NOT NULL DEFAULT '' COMMENT '地下城确认框文本',
+  `count_down_frequency` int(11) NOT NULL COMMENT '倒计时频率',
+  `center_system_frequency` int(11) NOT NULL COMMENT '跑马灯频率',
+  `enable` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否有效',
+  `server_version` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='预告功能配置表';
+
+
+CREATE TABLE `t_gacha_schedule_config` (
+  `schedule_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '活动ID',
+  `gacha_type` int(11) NOT NULL DEFAULT 0 COMMENT '扭蛋类型',
+  `begin_time` datetime NOT NULL COMMENT '开始时间',
+  `end_time` datetime NOT NULL COMMENT '结束时间',
+  `cost_item_id` int(11) unsigned NOT NULL COMMENT '消耗材料ID',
+  `cost_item_num` int(11) unsigned NOT NULL COMMENT '消耗材料数量',
+  `gacha_pool_id` int(11) unsigned NOT NULL COMMENT 'Gacha根ID',
+  `gacha_prob_rule_id` int(11) unsigned NOT NULL COMMENT 'Gacha概率配置ID',
+  `gacha_up_config` varchar(512) NOT NULL DEFAULT '' COMMENT 'UP配置',
+  `gacha_rule_config` varchar(512) NOT NULL DEFAULT '' COMMENT '保底规则配置',
+  `gacha_prefab_path` varchar(512) NOT NULL DEFAULT '' COMMENT '扭蛋Prefab路径',
+  `gacha_preview_prefab_path` varchar(512) NOT NULL DEFAULT '' COMMENT '扭蛋预览Prefab路径',
+  `gacha_prob_url` varchar(512) NOT NULL DEFAULT '' COMMENT '扭蛋概率展示url',
+  `gacha_record_url` varchar(512) NOT NULL DEFAULT '' COMMENT '扭蛋记录url',
+  `gacha_sort_id` int(11) unsigned NOT NULL COMMENT '扭蛋排序权重',
+  `enabled` tinyint(4) NOT NULL DEFAULT 1 COMMENT '0不生效，1生效',
+  `desc` varchar(512) DEFAULT NULL,
+  PRIMARY KEY (`schedule_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='扭蛋活动配置';
+
+
+CREATE TABLE `t_login_black_uid_config` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` int(10) unsigned NOT NULL,
+  `begin_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
+  `msg` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `uid` (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='登入黑名单配置';
+
+
+CREATE TABLE `t_login_reward_config` (
+  `config_id` int(11) NOT NULL AUTO_INCREMENT,
+  `config_type` tinyint(4) NOT NULL DEFAULT 0,
+  `reward_rules` varchar(1024) NOT NULL,
+  `email_valid_days` int(11) NOT NULL,
+  `email_title` varchar(200) NOT NULL,
+  `email_sender` varchar(200) NOT NULL,
+  `email_content` text NOT NULL,
+  `item_list` varchar(1024) NOT NULL COMMENT '奖励列表，proto3的json格式',
+  `effective_account_type_list` varchar(100) NOT NULL,
+  `begin_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
+  `enabled` tinyint(4) NOT NULL DEFAULT 1 COMMENT '0不生效，1生效',
+  `tag` varchar(200) NOT NULL DEFAULT '' COMMENT '标签',
+  PRIMARY KEY (`config_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='每日登入奖励配置';
+
+
+CREATE TABLE `t_luashell_config` (
+  `luashell_config_id` int(11) unsigned NOT NULL,
+  `lua_shell` mediumblob NOT NULL COMMENT 'lua脚本',
+  `uid_list` varchar(4096) NOT NULL DEFAULT '' COMMENT '白名单多个,隔开，空表示不开启白名单',
+  `platform_type_list` varchar(4096) NOT NULL DEFAULT '' COMMENT '(如安卓 ios) 多个,隔开，空表示对平台不做要求',
+  `percent` tinyint(3) NOT NULL DEFAULT 0 COMMENT '灰度百分比',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '创建时间',
+  PRIMARY KEY (`luashell_config_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='luashell 配置表';
+
+
+CREATE TABLE `t_mtp_blacklist_config` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '默认主键',
+  `type` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '对抗类型',
+  PRIMARY KEY (`ID`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='MTP要踢下线的黑名单ID';
+
+
+CREATE TABLE `t_sign_in_schedule_config` (
+  `schedule_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '排期ID',
+  `config_id` int(11) NOT NULL DEFAULT 0 COMMENT '签到配置ID',
+  `begin_time` datetime NOT NULL COMMENT '开始时间',
+  `end_time` datetime NOT NULL COMMENT '结束时间',
+  PRIMARY KEY (`schedule_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='签到活动配置';
+
+
+CREATE TABLE `t_textmap_config` (
+  `text_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'textmap的key',
+  `delete_time` datetime NOT NULL COMMENT '失效时间，时间一到就会删除这条记录',
+  `en` text NOT NULL COMMENT '英文',
+  `sc` text NOT NULL COMMENT '简体中文',
+  `tc` text NOT NULL COMMENT '繁体中文',
+  `fr` text NOT NULL COMMENT '法语',
+  `de` text NOT NULL COMMENT '德语',
+  `es` text NOT NULL COMMENT '西班牙语',
+  `pt` text NOT NULL COMMENT '葡萄牙语',
+  `ru` text NOT NULL COMMENT '俄语',
+  `jp` text NOT NULL COMMENT '日语',
+  `kr` text NOT NULL COMMENT '韩语',
+  `th` text NOT NULL COMMENT '泰文',
+  `vn` text NOT NULL COMMENT '越南语',
+  `id` text NOT NULL COMMENT '印尼语',
+  PRIMARY KEY (`text_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务端的textmap一般用于邮件，需要控制条目，因为全部加载到内存中';
+
+
+
+USE `hk4e_db_deploy_config`;
+
+CREATE TABLE `t_area_config` (
+  `area_type` varchar(64) NOT NULL COMMENT '地区类型',
+  `business` varchar(128) NOT NULL COMMENT '业务英文标识',
+  `business_cn` varchar(128) NOT NULL COMMENT '业务中文标识',
+  PRIMARY KEY (`area_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='地区信息';
+
+INSERT INTO `t_area_config` (`area_type`, `business`, `business_cn`) VALUES
+('global',  'hk4e_global',  ''),
+('cn',  'hk4e_cn',  '');
+
+
+CREATE TABLE `t_authkey_config` (
+  `version` int(10) unsigned NOT NULL COMMENT '密钥版本',
+  `private_key` varchar(4096) NOT NULL DEFAULT '' COMMENT '密钥',
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='密钥管理';
+
+INSERT INTO `t_authkey_config` (`version`, `private_key`) VALUES
+(1,	'-----BEGIN RSA PRIVATE KEY-----\nMIIEoQIBAAKCAQB62b+/gK3AIdJA/Dti7lgC/PjaqWYAQwSZ8sMqT8m2ksOj/1p7\nvwEiN5aQnZZx03V0hVgxHtdr6q5NRZ7rOF6g5hn9OVbvMacMiqvUQr9tL0XF67Ew\nIqaymsujkTyXwvpgLYvNHZ1YJbs3wcbg56WjV7BuhPcsoFeXvpvlbTQvemr+jGIk\nr2qhfaa2k0IFPugiT4/7Zqroy1NECCroz0SVeX8goiPeVMde7JHbCnZGN2ar1drH\nv3Jk7pPHiVMAgKk+JS5T7BU09qxX7HlhOzCwLD/d9fTP8lQdC+Rzd+KToKHeGed8\n/ZucnwKyB0C2C4k/wXg0FLezica4HRG/oFsbAgMBAAECggEAS5+1aNZ2ntpzCmv6\nxri/1v8Q1dIHp0uaDoahW2+IVWpdIpwzgA+hTAX6GoXXsbQhDpxzILHCnHz31Ttx\nS40Eu3lKMFZWzKG9GnxWsDBylGzQP7kJ9v6trS6bAtKKAUYWSJRhBeAgFr4LVJRl\nr9cJYNa/Fhml6oO9x/yfDQk/YaXYzg0b4YzuLUfc/7lMXC/xBTPsfLQylzCdYhxq\nOQlKwCUYTsvGz3dZdBPmUYGR6qFRvbkHKT8sOBuwDvrUotejQroj28kwPa08c45j\nlafeYo3Mu4dN42o7jOuYkoMcN0YWUE7n6Nh3ybsfS9EIQgLS8nuxiBfKUJpftApR\nRDPLiQKBgQC0knh1MGg3whw1AlMRbwr1Dh//cvVOVzDiiUeiHc5vJWC2dle4awf9\nO1hMFXRWOUvyGf/417jzfDZAjmTuPTBWpDMpTA2ZA7/gc3EVBstJ9m+Pfj8F5/fX\nhZXTaLD9eT9OprIFv/DTHysXuei4fkMJjz0bRPuzR/WKJCPuODZcvwKBgQCuKs7D\n9sEMZEAo52AQKf7+ib6W+EKpnUphe5iCt6b86TdMAcBa3io7Z62DRUrEx9cXCrOK\nfmFRMZSkjoQyA1UoR8LbBF9TZBcF9liI6O/kOQJjFsJXBr24uLEtzlMVVvqF2Gk0\n5iKdQz0snvywzDMZO1KbcHnRDNqm023OigpspQKBgFN32UKia6pKiete9bL7V19L\ndjMImqfp2ej9eCVSDdiGuJvfPFE8+GZwBjK1QB+TQK3aot4OKaozYoiYycLueeey\n4wtV4ns2pn1EH6OOjm3UAmGcA9nhDkmLsGQW4qloYIEkwOmzfci5gZvoDdEqXCaR\nFbgDPS30N2XxqsI1LbvVAoGAVsroXQmTbGxs+LVMzuFOvGPCQZOYDNRgY7Hm74U7\nxx8lOlBJHj9GRnJFKnyWZPe9fTMNA8A1GPQfQd3vjMjSYA9a0DAenPzs6EC6IAgM\nu+uY/+4wjJPEadBIIy6FgsXkdFzDGORybXI7gwf7ntMzx6gjY2iqm/3O3IHSX7G0\nvi0CgYBTMExLuWbvJ0mILunOANEQXFyj4avmYlSdKgKb1tTGPgZBRlLYDYo9eYc6\nIgVxfnz5N3KfqqgGSiDlbPGvgWFZSlSLB9Jmxqj/M3y000yDko7w6wXMevwSdaau\nusXcSSEObTBQHadCOPabjMWL7kKdy7jlLl/KAz/SDXbmf6AtZw==\n-----END RSA PRIVATE KEY-----');
+
+
+CREATE TABLE `t_bind_config` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `client_version` varchar(64) NOT NULL COMMENT '客户端版本号',
+  `region_name` varchar(64) NOT NULL COMMENT '绑定的服务器分区',
+  `channel_id` varchar(64) NOT NULL COMMENT '渠道类型',
+  PRIMARY KEY (`id`),
+  KEY `FK_t_bind_config_t_client_config` (`client_version`),
+  KEY `FK_t_bind_config_t_region_config` (`region_name`),
+  CONSTRAINT `FK_t_bind_config_t_client_config` FOREIGN KEY (`client_version`) REFERENCES `t_client_config` (`version`),
+  CONSTRAINT `FK_t_bind_config_t_region_config` FOREIGN KEY (`region_name`) REFERENCES `t_region_config` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='客户端、服务器绑定关系';
+
+INSERT INTO `t_bind_config` (`id`, `client_version`, `region_name`) VALUES
+(1,  'CHNWINCB1.0.0',  'dev_docker'),
+(2,  'CHNiOSCB1.0.0',  'dev_docker');
+
+
+CREATE TABLE `t_client_config` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `version` varchar(64) NOT NULL DEFAULT '' COMMENT '版本号',
+  `name` varchar(64) NOT NULL DEFAULT '' COMMENT '版本名',
+  `stop_server_config_str` varchar(512) NOT NULL DEFAULT '' COMMENT '停服配置',
+  `force_update_config_str` varchar(512) NOT NULL,
+  `client_custom_config_str` varchar(512) NOT NULL DEFAULT '' COMMENT '客户端自定义配置，服务器直接转发回客户端',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `version` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='客户端配置';
+
+INSERT INTO `t_client_config` (`id`, `version`, `name`, `stop_server_config_str`, `force_update_config_str`, `client_custom_config_str`) VALUES
+(1, 'CHNWINCB1.0.0',  '', '', '', '{\"visitor\": false, \"sdkenv\": \"2\", \"checkdevice\": false}'),
+(2, 'CHNiOSCB1.0.0',  '',  '', '', '{\"visitor\": false, \"sdkenv\": \"2\", \"checkdevice\": true, \"devicelist\": {\"ios\": \"38;39;40;41;42;43;44;10002\", \"android\": \"\"}}');
+
+
+CREATE TABLE `t_deploy_textmap_config` (
+  `text_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'textmap的key',
+  `en` varchar(512) NOT NULL DEFAULT '' COMMENT '英文',
+  `sc` varchar(512) NOT NULL DEFAULT '' COMMENT '简体中文',
+  `tc` varchar(512) NOT NULL DEFAULT '' COMMENT '繁体中文',
+  `fr` varchar(512) NOT NULL DEFAULT '' COMMENT '法语',
+  `de` varchar(512) NOT NULL DEFAULT '' COMMENT '德语',
+  `es` varchar(512) NOT NULL DEFAULT '' COMMENT '西班牙语',
+  `pt` varchar(512) NOT NULL DEFAULT '' COMMENT '葡萄牙语',
+  `ru` varchar(512) NOT NULL DEFAULT '' COMMENT '俄语',
+  `jp` varchar(512) NOT NULL DEFAULT '' COMMENT '日语',
+  `kr` varchar(512) NOT NULL DEFAULT '' COMMENT '韩语',
+  `th` varchar(512) NOT NULL DEFAULT '' COMMENT '泰文',
+  `vn` varchar(512) NOT NULL DEFAULT '' COMMENT '越南语',
+  `id` varchar(512) NOT NULL DEFAULT '' COMMENT '印尼语',
+  PRIMARY KEY (`text_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务端的textmap一般用于停服强更等多文本，需要控制条目，因为全部加载到内存中';
+
+
+CREATE TABLE `t_login_white_ip_config` (
+  `ip` varchar(32) NOT NULL,
+  `desc` varchar(32) NOT NULL,
+  PRIMARY KEY (`ip`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='登入IP白名单列表';
+
+
+CREATE TABLE `t_region_config` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `name` varchar(64) NOT NULL DEFAULT '' COMMENT '分区名称',
+  `title` varchar(128) NOT NULL DEFAULT '' COMMENT '显示名称',
+  `region_type` varchar(64) NOT NULL DEFAULT '' COMMENT '分区类型，线上、审核等',
+  `area_type` varchar(64) NOT NULL DEFAULT '' COMMENT '地区类型',
+  `dispatch_url` varchar(128) NOT NULL DEFAULT '' COMMENT 'dispatch的URL',
+  `muipserver_url` varchar(128) NOT NULL DEFAULT '' COMMENT 'muipserver的URL',
+  `account_url` varchar(128) NOT NULL DEFAULT '' COMMENT '通行证URL, CB2后废弃',
+  `account_url_bak` varchar(128) NOT NULL DEFAULT '' COMMENT '通行证URL备份, CB2后废弃',
+  `sdk_env` int(4) NOT NULL COMMENT 'CB2启用，0:国内正式环境 1:国内测试环境 2: 海外正式环境  3:海外测试环境',
+  `account_inner_url` varchar(128) NOT NULL DEFAULT '' COMMENT '通行证玩家信息URL',
+  `pay_callback_url` varchar(128) NOT NULL DEFAULT '' COMMENT '支付回调URL',
+  `resource_url` varchar(128) NOT NULL DEFAULT '' COMMENT '资源URL',
+  `resource_url_bak` varchar(128) NOT NULL DEFAULT '' COMMENT '资源url备份',
+  `data_url` varchar(128) NOT NULL DEFAULT '' COMMENT '数据URL',
+  `data_url_bak` varchar(128) NOT NULL DEFAULT '' COMMENT '数据url备份',
+  `feedback_url` varchar(128) NOT NULL DEFAULT '' COMMENT '反馈URL运营方的需求',
+  `bulletin_url` varchar(128) NOT NULL DEFAULT '' COMMENT '公告URL运营方的需求',
+  `handbook_url` varchar(128) NOT NULL DEFAULT '' COMMENT '游戏指南url',
+  `stop_server_config_str` varchar(512) NOT NULL DEFAULT '' COMMENT '停服配置',
+  `stop_register_config_str` varchar(512) NOT NULL DEFAULT '' COMMENT '注册配置',
+  `region_custom_config_str` varchar(512) NOT NULL DEFAULT '' COMMENT '客户端自定义配置，如果和client_config有字段冲突，则以client表为准',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `t_region_config` (`id`, `name`, `title`, `region_type`, `area_type`, `dispatch_url`, `muipserver_url`, `account_url`, `account_url_bak`, `sdk_env`, `account_inner_url`, `pay_callback_url`, `resource_url`, `resource_url_bak`, `data_url`, `data_url_bak`, `feedback_url`, `bulletin_url`, `handbook_url`, `stop_server_config_str`, `stop_register_config_str`, `region_custom_config_str`) VALUES
+(2,	'dev_docker',	'dev_docker',	'DEV_PUBLIC',	'global',	'http://%OUTER_IP%:21000/query_region/dev_docker',	'http://172.10.3.6:21051/api',	'',	'',	2,	'',	'http://172.10.3.9:21091/recharge',	'',	'',	'',	'',	'',	'',	'',	'',	'',	'');
+
+
+
+USE `hk4e_db_user`;
+
+
+CREATE TABLE `t_player_data_0` (
+  `uid` int(10) unsigned NOT NULL DEFAULT 0,
+  `nickname` varchar(128) NOT NULL DEFAULT '0',
+  `level` int(10) unsigned NOT NULL DEFAULT 0,
+  `exp` int(10) unsigned NOT NULL DEFAULT 0,
+  `vip_point` int(10) unsigned NOT NULL DEFAULT 0,
+  `json_data` varchar(512) NOT NULL DEFAULT '',
+  `bin_data` mediumblob NOT NULL,
+  `data_version` int(10) unsigned NOT NULL DEFAULT 0,
+  `tag_list` varchar(128) NOT NULL DEFAULT '',
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_save_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='玩家核心数据包';
+
+
+CREATE TABLE `t_player_data_1` (
+  `uid` int(10) unsigned NOT NULL DEFAULT 0,
+  `nickname` varchar(128) NOT NULL DEFAULT '0',
+  `level` int(10) unsigned NOT NULL DEFAULT 0,
+  `exp` int(10) unsigned NOT NULL DEFAULT 0,
+  `vip_point` int(10) unsigned NOT NULL DEFAULT 0,
+  `json_data` varchar(512) NOT NULL DEFAULT '',
+  `bin_data` mediumblob NOT NULL,
+  `data_version` int(10) unsigned NOT NULL DEFAULT 0,
+  `tag_list` varchar(128) NOT NULL DEFAULT '',
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_save_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='玩家核心数据包';
+
+
+CREATE TABLE `t_player_data_2` (
+  `uid` int(10) unsigned NOT NULL DEFAULT 0,
+  `nickname` varchar(128) NOT NULL DEFAULT '0',
+  `level` int(10) unsigned NOT NULL DEFAULT 0,
+  `exp` int(10) unsigned NOT NULL DEFAULT 0,
+  `vip_point` int(10) unsigned NOT NULL DEFAULT 0,
+  `json_data` varchar(512) NOT NULL DEFAULT '',
+  `bin_data` mediumblob NOT NULL,
+  `data_version` int(10) unsigned NOT NULL DEFAULT 0,
+  `tag_list` varchar(128) NOT NULL DEFAULT '',
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_save_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='玩家核心数据包';
+
+
+CREATE TABLE `t_player_data_3` (
+  `uid` int(10) unsigned NOT NULL DEFAULT 0,
+  `nickname` varchar(128) NOT NULL DEFAULT '0',
+  `level` int(10) unsigned NOT NULL DEFAULT 0,
+  `exp` int(10) unsigned NOT NULL DEFAULT 0,
+  `vip_point` int(10) unsigned NOT NULL DEFAULT 0,
+  `json_data` varchar(512) NOT NULL DEFAULT '',
+  `bin_data` mediumblob NOT NULL,
+  `data_version` int(10) unsigned NOT NULL DEFAULT 0,
+  `tag_list` varchar(128) NOT NULL DEFAULT '',
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_save_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='玩家核心数据包';
+
+
+CREATE TABLE `t_player_data_4` (
+  `uid` int(10) unsigned NOT NULL DEFAULT 0,
+  `nickname` varchar(128) NOT NULL DEFAULT '0',
+  `level` int(10) unsigned NOT NULL DEFAULT 0,
+  `exp` int(10) unsigned NOT NULL DEFAULT 0,
+  `vip_point` int(10) unsigned NOT NULL DEFAULT 0,
+  `json_data` varchar(512) NOT NULL DEFAULT '',
+  `bin_data` mediumblob NOT NULL,
+  `data_version` int(10) unsigned NOT NULL DEFAULT 0,
+  `tag_list` varchar(128) NOT NULL DEFAULT '',
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_save_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='玩家核心数据包';
+
+
+CREATE TABLE `t_player_data_5` (
+  `uid` int(10) unsigned NOT NULL DEFAULT 0,
+  `nickname` varchar(128) NOT NULL DEFAULT '0',
+  `level` int(10) unsigned NOT NULL DEFAULT 0,
+  `exp` int(10) unsigned NOT NULL DEFAULT 0,
+  `vip_point` int(10) unsigned NOT NULL DEFAULT 0,
+  `json_data` varchar(512) NOT NULL DEFAULT '',
+  `bin_data` mediumblob NOT NULL,
+  `data_version` int(10) unsigned NOT NULL DEFAULT 0,
+  `tag_list` varchar(128) NOT NULL DEFAULT '',
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_save_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='玩家核心数据包';
+
+
+CREATE TABLE `t_player_data_6` (
+  `uid` int(10) unsigned NOT NULL DEFAULT 0,
+  `nickname` varchar(128) NOT NULL DEFAULT '0',
+  `level` int(10) unsigned NOT NULL DEFAULT 0,
+  `exp` int(10) unsigned NOT NULL DEFAULT 0,
+  `vip_point` int(10) unsigned NOT NULL DEFAULT 0,
+  `json_data` varchar(512) NOT NULL DEFAULT '',
+  `bin_data` mediumblob NOT NULL,
+  `data_version` int(10) unsigned NOT NULL DEFAULT 0,
+  `tag_list` varchar(128) NOT NULL DEFAULT '',
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_save_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='玩家核心数据包';
+
+
+CREATE TABLE `t_player_data_7` (
+  `uid` int(10) unsigned NOT NULL DEFAULT 0,
+  `nickname` varchar(128) NOT NULL DEFAULT '0',
+  `level` int(10) unsigned NOT NULL DEFAULT 0,
+  `exp` int(10) unsigned NOT NULL DEFAULT 0,
+  `vip_point` int(10) unsigned NOT NULL DEFAULT 0,
+  `json_data` varchar(512) NOT NULL DEFAULT '',
+  `bin_data` mediumblob NOT NULL,
+  `data_version` int(10) unsigned NOT NULL DEFAULT 0,
+  `tag_list` varchar(128) NOT NULL DEFAULT '',
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_save_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='玩家核心数据包';
+
+
+CREATE TABLE `t_player_data_8` (
+  `uid` int(10) unsigned NOT NULL DEFAULT 0,
+  `nickname` varchar(128) NOT NULL DEFAULT '0',
+  `level` int(10) unsigned NOT NULL DEFAULT 0,
+  `exp` int(10) unsigned NOT NULL DEFAULT 0,
+  `vip_point` int(10) unsigned NOT NULL DEFAULT 0,
+  `json_data` varchar(512) NOT NULL DEFAULT '',
+  `bin_data` mediumblob NOT NULL,
+  `data_version` int(10) unsigned NOT NULL DEFAULT 0,
+  `tag_list` varchar(128) NOT NULL DEFAULT '',
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_save_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='玩家核心数据包';
+
+
+CREATE TABLE `t_player_data_9` (
+  `uid` int(10) unsigned NOT NULL DEFAULT 0,
+  `nickname` varchar(128) NOT NULL DEFAULT '0',
+  `level` int(10) unsigned NOT NULL DEFAULT 0,
+  `exp` int(10) unsigned NOT NULL DEFAULT 0,
+  `vip_point` int(10) unsigned NOT NULL DEFAULT 0,
+  `json_data` varchar(512) NOT NULL DEFAULT '',
+  `bin_data` mediumblob NOT NULL,
+  `data_version` int(10) unsigned NOT NULL DEFAULT 0,
+  `tag_list` varchar(128) NOT NULL DEFAULT '',
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_save_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='玩家核心数据包';
+
+
+CREATE TABLE `t_player_uid` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `account_type` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '账号类型',
+  `account_uid` varchar(128) NOT NULL DEFAULT '' COMMENT '绑定的账号UID',
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '创建时间',
+  `ext` varchar(512) NOT NULL DEFAULT '' COMMENT '自定义信息，Json格式',
+  `tag` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'TAG，由MUIP设置',
+  PRIMARY KEY (`uid`) USING BTREE,
+  UNIQUE KEY `account_type_account_uid` (`account_type`,`account_uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='玩家身份信息表';

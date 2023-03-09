@@ -1,0 +1,10 @@
+{% extends 'account/base.tmpl' %}
+
+{% block header %}Forgot password{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <input type="text" name="email" required="" placeholder="Email">
+    <button type="submit">Next</button>
+  </form>
+{% endblock %}

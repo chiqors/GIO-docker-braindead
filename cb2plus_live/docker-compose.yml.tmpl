@@ -1,0 +1,210 @@
+version: '3.9'
+
+
+x-common-variables: &mihoyo-variables
+  LD_LIBRARY_PATH: /usr/local/lib:../lib
+
+
+services:
+  mysql:
+    image: mariadb:10.9
+    restart: always
+    networks:
+      default:
+        ipv4_address: 172.10.3.100
+    environment:
+      MYSQL_ROOT_PASSWORD: %MYSQL_ROOT_PASSWORD%
+    volumes:
+      - ./mysql:/var/lib/mysql
+  redis:
+    image: redis:6.2
+    restart: always
+    networks:
+      default:
+        ipv4_address: 172.10.3.101
+    volumes:
+      - ./redis:/data
+    command: redis-server --save 60 1 --loglevel warning --requirepass miHoYo2012
+
+  adminer:
+    image: thecodingmachine/php:7.4-v4-cli
+    restart: unless-stopped
+    networks:
+      default:
+        ipv4_address: 172.10.3.102
+    expose:
+      - 80
+    depends_on:
+      - mysql
+    volumes:
+      - ./adminer:/var/www
+    working_dir: /var/www
+    command: php -S 0.0.0.0:80
+
+  nodeserver:
+    image: debian:11
+    restart: on-failure
+    networks:
+      default:
+        ipv4_address: 172.10.3.3
+    expose:
+      - 21121/udp
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ./server:/opt/hk4e
+    working_dir: /opt/hk4e/nodeserver
+    environment:
+      <<: *mihoyo-variables
+    command: ./nodeserver -i 1003.3.3.1
+    stop_grace_period: 30s
+  dbgate:
+    image: debian:11
+    restart: on-failure
+    networks:
+      default:
+        ipv4_address: 172.10.3.4
+    depends_on:
+      - mysql
+      - redis
+      - nodeserver
+    volumes:
+      - ./server:/opt/hk4e
+    working_dir: /opt/hk4e/dbgate
+    environment:
+      <<: *mihoyo-variables
+    command: ./dbgate -i 1003.4.4.1
+    stop_grace_period: 30s
+  dispatch:
+    image: debian:11
+    restart: on-failure
+    networks:
+      default:
+        ipv4_address: 172.10.3.5
+    expose:
+      - 21061/udp
+      - 21041
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ./server:/opt/hk4e
+    working_dir: /opt/hk4e/dispatch
+    environment:
+      <<: *mihoyo-variables
+    command: ./dispatch -i 1003.5.5.1
+    stop_grace_period: 30s
+  gateserver:
+    image: debian:11
+    restart: on-failure
+    networks:
+      default:
+        ipv4_address: 172.10.3.1
+    expose:
+      - 21081/udp
+    ports:
+      - "0.0.0.0:21081:21081/udp"
+    depends_on:
+      - dbgate
+    volumes:
+      - ./server:/opt/hk4e
+    working_dir: /opt/hk4e/gateserver
+    environment:
+      <<: *mihoyo-variables
+    command: ./gateserver -i 1003.1.1.1
+    stop_grace_period: 30s
+  gameserver:
+    image: debian:11
+    restart: on-failure
+    networks:
+      default:
+        ipv4_address: 172.10.3.2
+    expose:
+      - 21111/udp
+    depends_on:
+      - dbgate
+      - nodeserver
+      - gateserver
+    volumes:
+      - ./server:/opt/hk4e
+    working_dir: /opt/hk4e/gameserver
+    environment:
+      <<: *mihoyo-variables
+    command: ./gameserver -i 1003.2.2.1
+    stop_grace_period: 300s
+  multiserver:
+    image: debian:11
+    restart: on-failure
+    networks:
+      default:
+        ipv4_address: 172.10.3.7
+    depends_on:
+      - dbgate
+      - nodeserver
+    volumes:
+      - ./server:/opt/hk4e
+    working_dir: /opt/hk4e/multiserver
+    environment:
+      <<: *mihoyo-variables
+    command: ./multiserver -i 1003.7.7.1
+    stop_grace_period: 300s
+  muipserver:
+    image: debian:11
+    restart: on-failure
+    networks:
+      default:
+        ipv4_address: 172.10.3.6
+    expose:
+      - 21051
+    depends_on:
+      - dbgate
+      - nodeserver
+    volumes:
+      - ./server:/opt/hk4e
+    working_dir: /opt/hk4e/muipserver
+    environment:
+      <<: *mihoyo-variables
+    command: ./muipserver -i 1003.6.6.1
+    stop_grace_period: 300s
+  pathfindingserver:
+    image: debian:11
+    restart: on-failure
+    networks:
+      default:
+        ipv4_address: 172.10.3.8
+    expose:
+      - 21101/udp
+    profiles:
+      - donotstart
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ./server:/opt/hk4e
+    working_dir: /opt/hk4e/pathfindingserver
+    environment:
+      <<: *mihoyo-variables
+    command: ./pathfindingserver -i 1003.8.8.1
+    stop_grace_period: 180s
+
+  sdk:
+    build:
+      context: ./sdk
+    image: hk4e/sdk
+    restart: unless-stopped
+    networks:
+      default:
+        ipv4_address: 172.10.3.253
+    ports:
+      - "0.0.0.0:21000:80"
+    volumes:
+      - ./sdk:/app
+
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 172.10.3.0/24
+          gateway: 172.10.3.254

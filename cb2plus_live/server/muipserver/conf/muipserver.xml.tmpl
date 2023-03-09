@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+    <BuildVersion value="202211072122" />
+    <!-- 日志配置 -->
+    <LogConf>
+        <LogLevel value="2" />
+        <MaxLogLen value="8192" />
+        <LogCutTime value="1440" />
+        <LogKeepTime value="4320" />
+        <LogList>
+            <DebugFile path="log/muipserver.log" level="DEBUG INFO WARNING ERROR" />
+            <WarningFile path="log/muipserver.warning.log" level="WARNING ERROR" />
+            <ErrorFile path="log/muipserver.error.log" level="ERROR" />
+            <CmdFile path="log/muipserver.cmd.log" level="CMD" />
+        </LogList>
+    </LogConf>
+
+
+    <!-- 网络配置 -->
+    <NetConf>
+        <NodeserverClientConf>
+            <RecvBufLen   value="1024" />
+            <MaxSendPacketLen value="512" />
+            <KeepAliveSec value="10" />
+            <TimeoutSec   value="30" />
+            <CutPacket    value="1" />
+            <ConnectList>
+                <Connect app_id="1003.3.3.1" ip="172.10.3.3" port="21121"/>
+            </ConnectList>
+            <NoDelay value="true" />
+            <AsyncSend value="true" CachePacketMaxNum="30000" SendBufLen="200" />
+        </NodeserverClientConf>
+
+        <!-- API服务 -->
+        <HttpServerConf>
+            <RecvBufLen value="16" />
+            <ThreadNum value="2" />
+            <KeepAliveSec value="0" />
+            <TimeoutSec value="30" />
+            <MaxConnNum value="4096" />
+            <CutPacket value="0" />
+        </HttpServerConf>
+    </NetConf>
+
+    <!-- 数据库配置 -->
+    <MysqlConf> 
+        <Db index="1" name="user_id" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="2" name="user_info_0" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3" name="user_info_1" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4" name="user_info_2" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="5" name="user_info_3" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="6" name="user_info_4" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="7" name="user_info_5" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="8" name="user_info_6" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="9" name="user_info_7" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="10" name="user_info_8" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="11" name="user_info_9" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="1001" name="" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_config" />
+        <Db index="1002" name="" host="172.10.3.100" port="3306" user="hk4e_readonly" pwd="miHoYo2012" dbname="hk4e_db_deploy_config" />
+    </MysqlConf>
+    <RedisConf>
+        <Db index="1" name="player_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="2" name="mail_box" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+        <Db index="3" name="offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" />
+    </RedisConf>
+
+    <!-- 分区配置 -->
+    <RegionConf name="dev_docker" />
+
+    <!-- HTTP请求签名 -->
+    <ApiConf sign_key="9H2UrJ5J4yZJf95FqMkqi628snEmzvyV9oAp" />
+
+    <ServiceList>
+        <Muipserver name="muipserver" thread_num="2" stat_log_level="" />
+    </ServiceList>
+
+    <!--
+     进程列表配置
+     1. 查询本进程要开放的端口
+     2. 与目标进程建立连接时，通过app_id查询
+    -->
+    <AppList>
+        <App app_id="1003.1.1.1" >
+            <Port name="port_player" port="21081"/>
+        </App>
+        <App app_id="1003.2.2.1" >
+            <Port name="port_gt" port="21111"/>
+        </App>
+        <App app_id="1003.3.3.1" >
+            <Port name="port_service" port="21121"/>
+        </App>
+        <App app_id="1003.4.4.1" >
+        </App>
+        <App app_id="1003.5.5.1" >
+            <Port name="port_gt" port="21061"/>
+            <Port name="port_http" port="21041"/>
+        </App>
+        <App app_id="1003.6.6.1" >
+            <Port name="port_http" port="21051"/>
+        </App>
+        <App app_id="1003.7.7.1" >
+        </App>
+        <App app_id="1003.8.8.1" >
+            <Port name="port_gt" port="21101"/>
+        </App>
+    </AppList>
+
+    <!--
+     机器列表配置, 两个功能
+     1 进程通过inner_ip查询自己的server_id，即每台机器的唯一标识
+     2 对于内部服务，只有这些机器可以连接
+    -->
+    <ServerList>
+        <Server id="1" host="172.10.3.1" inner_ip="172.10.3.1" outer_ip="%OUTER_IP%" />
+        <Server id="2" host="172.10.3.2" inner_ip="172.10.3.2" outer_ip="%OUTER_IP%" />
+        <Server id="3" host="172.10.3.3" inner_ip="172.10.3.3" outer_ip="%OUTER_IP%" />
+        <Server id="4" host="172.10.3.4" inner_ip="172.10.3.4" outer_ip="%OUTER_IP%" />
+        <Server id="5" host="172.10.3.5" inner_ip="172.10.3.5" outer_ip="%OUTER_IP%" />
+        <Server id="6" host="172.10.3.6" inner_ip="172.10.3.6" outer_ip="%OUTER_IP%" />
+        <Server id="7" host="172.10.3.7" inner_ip="172.10.3.7" outer_ip="%OUTER_IP%" />
+        <Server id="8" host="172.10.3.8" inner_ip="172.10.3.8" outer_ip="%OUTER_IP%" />
+    </ServerList>
+</Root>
