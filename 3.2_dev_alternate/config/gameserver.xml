@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+    <!-- 日志配置 -->
+    <LogConf>
+        <LogLevelMask value="" />
+        <MaxLogLen value="8192" />
+        <LogCutTime value="1440" />
+        <LogKeepTime value="4320" />
+        <LogQueueSize value="170" />
+        <LogBufSize value="24576" />
+        <LogList>
+            <DebugFile path="log/gameserver.log" level="DEBUG INFO FIGHT_DEBUG FIGHT_INFO FIGHT_WARNING VIEW_DEBUG" />
+            <WarningFile path="log/gameserver.warning.log" level="WARNING GROUP_WARNING" />
+            <ErrorFile path="log/gameserver.error.log" level="ERROR FATAL" />
+            <CmdFile path="log/gameserver.cmd.log" level="CMD" />
+            <PacketFile path="log/gameserver.packet.log" level="PACKET" />
+            <PlayerStatFile path="log/player.stat.log" level="STAT_PLAYER" />
+            <LuaFile path="log/gameserver.lua.log" level="LUA_INFO LUA_WARNING GROUP_WARNING" />
+            <PosFile path="log/gameserver.pos.log" level="POS" />
+            <FightStatFile path="log/gameserver.fight.stat.log" level="FIGHT_STAT" />
+            <AntiCheatFile path="log/gameserver.anti.log" level="ANTI_CHEAT" />
+            <NoticeFile path="log/gameserver.notice.log" level="NOTICE" />
+            <SecFile path="log/gameserver.sec.stat.log" level="SEC_STAT" />
+            <StatFightFile path="log/fight.stat.log" level="STAT_FIGHT" />
+        </LogList>
+    </LogConf>
+    <!-- 网络配置 -->
+    <NetConf>
+        <!-- 面向gateserver的server -->
+        <!--Buff长度单位为K -->
+        <GateserverServerConf>
+            <RecvBufLen value="300" />
+            <MaxSendPacketLen value="250" />
+            <ThreadNum value="1" />
+            <KeepAliveSec value="1" />
+            <TimeoutSec value="30" />
+            <MaxConnNum value="128" />
+            <CutPacket value="1" />
+            <RefuseRepeatIp value="1" />
+            <NoDelay value="true" />
+            <AsyncSend value="true" CachePacketMaxNum="30000" />
+            <Backlog value="2048" />
+        </GateserverServerConf>
+        <NodeserverClientConf>
+            <RecvBufLen value="1300" />
+            <MaxSendPacketLen value="1024" />
+            <ThreadNum value="1" />
+            <KeepAliveSec value="10" />
+            <TimeoutSec value="30" />
+            <CutPacket value="1" />
+            <ConnectList>
+                <Connect app_id="999.3.1.1" ip="10.0.0.103" port="10103" />
+            </ConnectList>
+            <NoDelay value="true" />
+            <AsyncSend value="true" CachePacketMaxNum="30000" />
+            <Reconnect min_interval="1000" max_interval="3000" />
+        </NodeserverClientConf>
+    </NetConf>
+    <!-- 数据库配置 -->
+    <MysqlConf>
+        <Db index="1" name="user_id" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="2" name="online_id" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3" name="psn_online_id" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="101" name="user_info_0" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="102" name="user_info_1" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="103" name="user_info_2" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="104" name="user_info_3" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="105" name="user_info_4" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="106" name="user_info_5" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="107" name="user_info_6" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="108" name="user_info_7" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="109" name="user_info_8" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="110" name="user_info_9" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3001" name="block_info_0" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3002" name="block_info_1" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3003" name="block_info_2" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3004" name="block_info_3" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3005" name="block_info_4" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3006" name="block_info_5" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3007" name="block_info_6" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3008" name="block_info_7" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3009" name="block_info_8" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3010" name="block_info_9" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3011" name="block_info_10" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3012" name="block_info_11" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3013" name="block_info_12" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3014" name="block_info_13" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3015" name="block_info_14" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3016" name="block_info_15" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3017" name="block_info_16" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3018" name="block_info_17" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3019" name="block_info_18" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3020" name="block_info_19" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3021" name="block_info_20" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3022" name="block_info_21" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3023" name="block_info_22" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3024" name="block_info_23" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3025" name="block_info_24" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3026" name="block_info_25" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3027" name="block_info_26" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3028" name="block_info_27" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3029" name="block_info_28" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3030" name="block_info_29" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3031" name="block_info_30" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3032" name="block_info_31" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3033" name="block_info_32" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3034" name="block_info_33" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3035" name="block_info_34" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3036" name="block_info_35" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3037" name="block_info_36" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3038" name="block_info_37" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3039" name="block_info_38" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3040" name="block_info_39" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4001" name="home_info_0" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4002" name="home_info_1" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4003" name="home_info_2" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4004" name="home_info_3" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4005" name="home_info_4" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4006" name="home_info_5" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4007" name="home_info_6" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4008" name="home_info_7" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4009" name="home_info_8" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4010" name="home_info_9" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="1001" name="db_hk4e_local" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_config" />
+        <Db index="1002" name="db_hk4e_global" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_global_deploy" />
+        <Db index="2001" name="db_hk4e_order" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_order" />
+    </MysqlConf>
+    <RedisConf>
+        <Db index="1" name="player_status" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="2" name="mail_box" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="3" name="offline_msg" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="4" name="player_friend" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="5" name="player_ask_friend" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="6" name="player_brief" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="7" name="player_blacklist" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="8" name="player_private_chat" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="9" name="player_recent_chat" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="10" name="player_private_chat_unread" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="11" name="player_activity_social" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="12" name="home_status" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="13" name="home_brief" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="14" name="home_offline_msg" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="15" name="offline_op" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="16" name="custom_dungeon" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="17" name="player_psn_friend" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="18" name="player_psn_blacklist" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="19" name="home_blueprint" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+    </RedisConf>
+    <!-- 数据库额外配置 扩容操作相关 -->
+    <MysqlExtraConf player_db_count="10" home_db_count="10" is_judge_user_db_delete="true" />
+    <!-- 分区配置 分区名, 是否是提审服,是否是国服 -->
+    <RegionConf name="dev_docker" is_audit="false" is_internal_server="false" />
+    <!-- 服务配置 -->
+    <ServiceList>
+        <Gameserver name="gameserver" thread_num="2" async_thread_num="2" warn_online_player="80" max_online_player="100" session_timeout="120" brief_data_upload_interval="300" lua_gc_interval="30">
+            <Save max_save_time_interval="180" timer_save_time_interval="120" allow_send_save_proto_cost_time_ms="100" hard_limit_send_save_proto_cost_time_ms="500" normal_save_check_interval="20" shutdown_save_check_interval="3" player_save_timeout_after_send_proto="5" player_save_timeout_max_cooldown_expo="5" home_save_timeout_after_send_proto="5" home_save_timeout_max_cooldown_expo="5" home_no_player_destroy_time="600" player_save_when_gacha="true" player_save_when_recharge="true" is_async_save="true" is_gacha_player_save_check_item_type="true" warn_bin_len="320000" max_bin_len="350000" warn_block_bin_len="400000" max_block_bin_len="430000" warn_sum_bin_len="720000" max_sum_bin_len="780000" warn_home_bin_len="150000" max_home_bin_len="180000" />
+            <PushTags is_ssl="True" host="127.0.0.1" port="443" uri="/combo/postman/device/setUserTags" />
+            <StatLog stat_log_level="STAT_PLAYER" thread_name="stat_log" stat_log_soft_limit="10000" stat_log_limit="20000" max_wait_time_us="1000000" max_busy_time_us="1000000" />
+            <StatLog stat_log_level="STAT_FIGHT" thread_name="fight_stat_log" stat_log_soft_limit="10000" stat_log_limit="20000" max_wait_time_us="1000000" max_busy_time_us="1000000" />
+        </Gameserver>
+    </ServiceList>
+    <!-- PS4平台是否展示月卡 -->
+    <PS4RechargeCard open="true" />
+    <!-- 是否开启Ability哈希码传输 -->
+    <AbilityHash open="true" />
+    <!-- 是否开启GmTalk -->
+    <GmTalk open="true" />
+    <!-- 是否禁止进入璃月, 默认关闭 -->
+    <CheckUnexpectedPos open="false" />
+    <!-- 是否开启快速模拟养成指令 -->
+    <SimulationOpen open="true" />
+    <!-- 是否开启entity相关debug日志 EntityAppear和EntityDisappear -->
+    <EntityDebugLog open="true" />
+    <!-- 是否在埋点中上报客户端port -->
+    <IpPortLogReport open="true" />
+    <!-- 是否开启高频日志 -->
+    <HighFreqPacketLog open="true" packet_log_black_list="UnionCmdNotify SceneEntitiesMovesReq AbilityInvocationsNotify CombatInvocationsNotify SceneEntityDisappearNotify SceneEntityAppearNotify ClientAbilitiesInitFinishCombineNotify GmTalkReq GmTalkRsp HomeUpdateArrangementInfoReq HomeGetArrangementInfoRsp EvtAiSyncCombatThreatInfoNotify EvtAiSyncSkillCdNotify ClientAbilityInitFinishNotify EntityFightPropChangeReasonNotify" />
+    <!-- 产出监控告警HTTP POST请求地址-->
+    <OutputControlMonitor host="106.14.151.240" port="9090" uri="/hk4e/monitor" is_ssl="0" />
+    <!-- 视野配置 -->
+    <VisionList>
+        <Vision level="正常视距" vision_range="80" grid_width="20" />
+        <Vision level="较远视距" vision_range="160" grid_width="40" />
+        <Vision level="远视距" vision_range="1000" grid_width="250" />
+        <Vision level="超级视距" vision_range="4000" grid_width="1000" />
+        <Vision level="近视距" vision_range="40" grid_width="20" />
+    </VisionList>
+    <!-- 场景实体数量限制 -->
+    <SceneEntityNumLimit warn_num="19999" error_num="49999" />
+    <!-- ModifierId限制 -->
+    <ModifierIdLimit error_num="1999" />
+    <!-- Group限制 -->
+    <GroupLimit max_unload_time_us="5001" forbid_find_unregister_group="true" unload_invalid_groups_interval="5" unload_invalid_groups_threshold="250" delete_reload_pos_when_disconnect="false" home_group_load_forbid_async_load="true" ignore_mutual_replace_check="false" forbid_special_region_trigger_group_load="false" forbid_special_vision_type_control_group_load="false" />
+    <!-- LuaScript缓存数量告警日志数量 -->
+    <LuaScriptCacheNumLimit warn_num="1000" error_num="2000" clear_num="500" clear_time="300" clear_min_num="100" />
+    <ServerErrorNotify rate_limit="64" />
+    <AbilityConfig is_client_anticheat_report_open="false" />
+    <VisionConf is_delete_in_sight_when_appear="true" />
+    <CustomDungeon cache_timeout="60" enable_layout_check="true" min_enter_interval="1" min_recommend_interval="1" min_social_interval="1" store_cache_timeout="60" />
+    <FightConf is_abyss_kill_limbo_monster="true" />
+    <!-- 伤害限制 -->
+    <AntiCheatDamage max_damage="9999999.0" max_damage_percentage="99.9" max_damage_percentage_ratio="99.9" max_damage_extra="99999.0" is_open="true" />
+    <!-- 数值配置或邮件发放的各种资源单次产出数量上限 -->
+    <ItemOutputLimit>
+        <Item item_id="201" reward_limit="1000" drop_limit="1000" mail_limit="9999" />
+        <Item item_id="223" reward_limit="100" drop_limit="100" mail_limit="100" />
+        <Item item_id="224" reward_limit="100" drop_limit="100" mail_limit="100" />
+    </ItemOutputLimit>
+    <!-- 产出监控和产出控制相关开关 -->
+    <ItemOutputConfig is_output_limit_can_alarm="false" is_output_control_can_alarm="false" is_enable_extra_white_list="false" />
+    <!--热云广告监测平台-->
+    <TrackingIOConfig host="127.0.0.1" port="443" uri="/receive/tkio/payment" is_ssl="true" is_enable="true" ANDROID="e84aee04f6bbbf665eec0a3921c1b2da" IOS="fa8212ef87c98d1c52e1dad256641d9a" />
+    <!--adjust广告监测平台-->
+    <AdjustTrackingConfig host="127.0.0.1" port="443" uri="/event" is_ssl="true" is_enable="false" ANDROID="lng1hl9gf2tc" IOS="dungupko1zpc" />
+    <!-- 客户端数值版本号不是最新是否禁止联机 -->
+    <ClientDataVersionNotLatestBanMp open="false" />
+    <UnionPacket max_freq="8000" union_notify_max_freq="200" combat_notify_max_freq="1500" union_packet_kick_cheat_count="10" />
+    <!-- 安全相关配置 -->
+    <SecurityConfig>
+        <PlatformConfig platform_type="IOS" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" />
+        <PlatformConfig platform_type="ANDROID" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" />
+        <PlatformConfig platform_type="PC" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" />
+        <PlatformConfig platform_type="PS4" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" />
+        <PlatformConfig platform_type="PS5" is_anti_offline_open="true" forbid_login_level="0" max_check_level="0" />
+        <LevelConfig check_type="1" down_grade_num="20" up_grade_num="5" />
+        <is_other_platform_need_check_anti_offline value="false" />
+        <IsSecChannelOpen value="1" />
+        <IsChecksumVersionNotFoundForbidLogin value="0" />
+        <IsSegmentCrcOpen value="0" />
+        <IsChecksumVersionNotFoundSegmentCrcDefaultOpen value="0" />
+        <SegmentCrcMaxInteractCount value="20" />
+        <SegmentCrcConfig>
+            <SegmentCrcPlatformConfig platform_type="IOS" platform_directory="iOS">
+                <SegmentCrcModuleConfig crc_module_index="1" crc_module_type="IOS_HK4E" crc_module_file="HK4E.json" />
+            </SegmentCrcPlatformConfig>
+            <SegmentCrcPlatformConfig platform_type="ANDROID" platform_directory="Android">
+                <SegmentCrcModuleConfig crc_module_index="1" crc_module_type="ANDROID_LIBIL2CPP" crc_module_file="libil2cpp.json" />
+                <SegmentCrcModuleConfig crc_module_index="2" crc_module_type="ANDROID_LIBUNITY" crc_module_file="libunity.json" />
+                <SegmentCrcModuleConfig crc_module_index="3" crc_module_type="ANDROID_LIBXLUA" crc_module_file="libxlua.json" />
+            </SegmentCrcPlatformConfig>
+            <SegmentCrcPlatformConfig platform_type="PC" platform_directory="StandaloneWindows64">
+                <SegmentCrcModuleConfig crc_module_index="1" crc_module_type="PC_UNITYPLAYER" crc_module_file="UnityPlayer.json" />
+                <SegmentCrcModuleConfig crc_module_index="2" crc_module_type="PC_USERASSEMBLY" crc_module_file="UserAssembly.json" />
+                <SegmentCrcModuleConfig crc_module_index="3" crc_module_type="PC_XLUA" crc_module_file="xlua.json" />
+            </SegmentCrcPlatformConfig>
+        </SegmentCrcConfig>
+        <IsMoveSpeedCheckOpen value="true" />
+        <IsMoveSpeedCheckKickPlayer value="0" />
+        <IsMoveSpeedCheckDragPlayer value="true" />
+        <IsSceneTimeMoveSpeedCheckOpen value="true" />
+        <IsSceneTimeMoveSpeedCheckKickPlayer value="0" />
+        <IsSceneTimeMoveSpeedCheckDragPlayer value="true" />
+        <AbilityConfigHashWhitelist is_open="true" value="" />
+        <IsEnableClientHashDebug value="true" />
+        <UnityEngineTimescaleLimit value="2" />
+        <is_forbid_monster_disallowed_death value="false" />
+        <is_move_back_monster_on_forbid_death value="false" />
+        <is_revive_monster_on_forbid_death value="false" />
+        <is_use_server_override_map value="true" />
+        <is_use_server_dynamic_value value="true" />
+        <is_mouse_macro_check_open value="true" />
+        <EnvironmentErrorConfig>
+            <EnvironmentPlatformConfig platform_type="IOS" is_open="true" is_check_black_regex="false" white_regex=".{2}00.*" black_regex=".{2}(11|54|13).*" />
+            <EnvironmentPlatformConfig platform_type="ANDROID" is_open="true" is_check_black_regex="false" white_regex=".{2}00.*" black_regex=".{2}(11|54|13).*" />
+            <EnvironmentPlatformConfig platform_type="PC" is_open="true" is_check_black_regex="false" white_regex=".{2}00.*" black_regex=".{2}(11|54|13).*" />
+            <EnvironmentPlatformConfig platform_type="PS4" is_open="true" is_check_black_regex="false" white_regex=".{2}00.*" black_regex=".{2}(11|54|13).*" />
+        </EnvironmentErrorConfig>
+        <SafeServerConfig>
+            <ConnectionStatusNotifyConfig enable="false" host="127.0.0.1" port="443" login_uri="/bat/game/gameLoginNotify" logout_uri="/bat/game/gameLogoutNotify" heartbeat_uri="/bat/game/gameHeartBeatNotify" is_ssl="true" method="POST" timeout="5" heartbeat_interval="300">
+                <Head name="Content-Type" value="application/json" />
+            </ConnectionStatusNotifyConfig>
+            <SecurityPlatformMap>
+                <entry platform_type="EDITOR" security_platform_type="Unkown" />
+                <entry platform_type="IOS" security_platform_type="IOS" />
+                <entry platform_type="ANDROID" security_platform_type="Android" />
+                <entry platform_type="PC" security_platform_type="PC" />
+                <entry platform_type="PS4" security_platform_type="PS" />
+                <entry platform_type="SERVER" security_platform_type="Unkown" />
+                <entry platform_type="CLOUD_ANDROID" security_platform_type="CloudAndroid" />
+                <entry platform_type="CLOUD_IOS" security_platform_type="CloudIOS" />
+                <entry platform_type="PS5" security_platform_type="PS5" />
+                <entry platform_type="CLOUD_WEB" security_platform_type="Unkown" />
+                <entry platform_type="CLOUD_TV" security_platform_type="Unkown" />
+                <entry platform_type="CLOUD_MAC" security_platform_type="Unkown" />
+                <entry platform_type="CLOUD_PC" security_platform_type="Unkown" />
+                <entry platform_type="CLOUD_THIRD_PARTY_MOBILE" security_platform_type="Unkown" />
+                <entry platform_type="CLOUD_THIRD_PARTY_PC" security_platform_type="Unkown" />
+            </SecurityPlatformMap>
+        </SafeServerConfig>
+        <CheckQiandaoguaConfig is_enable="true" attack_count_limit="4" record_entry_limit="100" anticheat_log_limit="10000" />
+        <ClientTotalTickTimeConfig max_delay_time="10" anticheat_log_limit="10000" />
+        <ClientServerGlobalValueConfig is_open="true" sgv_name="SGV_CAN_CLEAR_THREAT" timeout_seconds="10" anticheat_log_limit="10000" />
+        <StaminaCheckConfig is_enable="true" record_limit="-50" low_limit="-500" anticheat_log_limit="100" />
+        <PacketCostTimeExceedLimitConfig is_enable="true" log_interval="60" log_limit="10" check_interval_ms="5000" cost_time_percent="20" is_enable_kick="true" kick_time_percent="80" check_kick_interval="60" trigger_kick_count="2" thread_kick_interval="60" />
+        <GadgetInteractBeyondCheckDistanceConfig is_enable="true" log_interval="60" log_limit="1" min_record_count="5" />
+        <LuaShellSecurityConfig is_check_timeout_open="true" lua_shell_timeout_seconds="60" />
+        <AttackDamageReportConfig is_enable="true" log_interval="60" log_limit="10" min_report_damage="0.0" />
+    </SecurityConfig>
+    <HomeVerify host="127.0.0.1" port="443" uri="/hk4e_homeland/OuterApi/Record" is_ssl="True" is_enable="False" is_detail_log="True" token="3b0f517ab4044fb06339361f0b18c7f5" />
+    <NicknameSignAudit host="127.0.0.1" port="443" uri="/outer_api/Outer/Call" is_ssl="True" timeout="5" language="zh-cn" queue_key="hk4e_nickname_sign" />
+    <!-- 活动定时器注册的interval随机时间配置 -->
+    <ActivityTimerIntervalRandTime value="30" />
+    <!-- 异步Http请求配置 -->
+    <AsyncHttpClient thread="1" capacity="1000" first_login_nickname_capacity="1000" home_verify_post_capacity="1000" safe_server_capacity="1000" output_control_monitor_capacity="1000" />
+    <!--
+     进程列表配置
+     1. 查询本进程要开放的端口
+     2. 与目标进程建立连接时，通过app_id查询
+    -->
+    <AppList>
+        <App app_id="999.1.1.1">
+            <Port name="port_player" port="10101" />
+        </App>
+        <App app_id="999.2.1.1">
+            <Port name="port_gt" port="10102" />
+        </App>
+        <App app_id="999.3.1.1">
+            <Port name="port_service" port="10103" />
+        </App>
+        <App app_id="999.4.1.1" />
+        <App app_id="999.5.1.1">
+            <Port name="port_gt" port="10115" />
+            <Port name="port_http" port="10105" />
+        </App>
+        <App app_id="999.6.1.1">
+            <Port name="port_http" port="10106" />
+        </App>
+        <App app_id="999.7.1.1" />
+        <App app_id="999.8.1.1">
+            <Port name="port_gt" port="10109" />
+        </App>
+        <App app_id="999.9.1.1">
+            <Port name="port_http" port="10108" />
+        </App>
+    </AppList>
+    <!--
+     机器列表配置, 两个功能
+     1 进程通过inner_ip查询自己的server_id，即每台机器的唯一标识
+     2 对于内部服务，只有这些机器可以连接
+    -->
+    <ServerList>
+        <Server id="1" host="10.0.0.102" inner_ip="10.0.0.102" outer_ip="127.0.0.1" />
+    </ServerList>
+    <AppHostCheck check_inner_ip="true" />
+    <MysqlPoolMaxSize value="0" />
+    <RedisPoolMaxSize value="0" />
+    <!-- 限频 -->
+    <RateLimit login="10" is_cal_login_load="True" />
+    <Tracing service_name="gameserver" enabled="false" force_enable_perf_span="false">
+        <PerfSpanAppList />
+    </Tracing>
+    <MemPerfConfig force_open="true" output_interval="1800" black_list="proto Watcher WeakptrObserver Event Ability Impl Comp Handler data::" white_list="BuffComp EquipComp GatherComp ActorAbility">
+        <MemPerfAppList />
+    </MemPerfConfig>
+    <CmdReportConfig force_open="true" output_interval="10">
+        <CmdReportAppList />
+    </CmdReportConfig>
+    <!-- 协程 -->
+    <Coroutine timeout="10000" force_open="false">
+        <CoroutineAppList />
+    </Coroutine>
+    <MonitorReport port="1056" svn_report_interval="0" />
+    <DataReadConfig is_readlink="true" />
+    <Grid is_destory="true" is_use_pool="false" />
+    <TCMallocConfig output_tcmalloc_interval="30" tcmalloc_free_interval="0" />
+    <LuaMemoryReport lua_memory_report_interval="30" />
+    <NewLanguageConfig is_enable_setting_new_language="false" new_language_type_list="LANGUAGE_TR LANGUAGE_IT" />
+    <AutoReloadConfig interval="-1" />
+    <!-- Service每帧处理协议数量配置：0表示不做限制每帧把队列中的所有协议都处理完 -->
+    <ServiceProcessPacketCountMax value="1000" />
+</Root>

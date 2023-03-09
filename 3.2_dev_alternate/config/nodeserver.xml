@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+    <!-- 日志配置 -->
+    <LogConf>
+        <LogLevelMask value="" />
+        <MaxLogLen value="8192" />
+        <LogCutTime value="1440" />
+        <LogKeepTime value="4320" />
+        <LogQueueSize value="6144" />
+        <LogBufSize value="24576" />
+        <LogList>
+            <DebugFile path="log/nodeserver.log" level="DEBUG INFO" />
+            <WarningFile path="log/nodeserver.warning.log" level="WARNING" />
+            <ErrorFile path="log/nodeserver.error.log" level="ERROR FATAL" />
+            <CmdFile path="log/nodeserver.cmd.log" level="CMD" />
+            <NoticeFile path="log/nodeserver.notice.log" level="NOTICE" />
+        </LogList>
+    </LogConf>
+    <!-- 网络配置 -->
+    <NetConf>
+        <!-- 面向gameserver的server -->
+        <ServiceServerConf>
+            <RecvBufLen value="1300" />
+            <MaxSendPacketLen value="1024" />
+            <ThreadNum value="1" />
+            <KeepAliveSec value="10" />
+            <TimeoutSec value="30" />
+            <MaxConnNum value="128" />
+            <CutPacket value="1" />
+            <NoDelay value="true" />
+            <AsyncSend value="true" CachePacketMaxNum="30000" />
+            <Backlog value="2048" />
+        </ServiceServerConf>
+    </NetConf>
+    <!-- 数据库配置 -->
+    <MysqlConf>
+        <Db index="1" name="user_id" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="2" name="online_id" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3" name="psn_online_id" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="101" name="user_info_0" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="102" name="user_info_1" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="103" name="user_info_2" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="104" name="user_info_3" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="105" name="user_info_4" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="106" name="user_info_5" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="107" name="user_info_6" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="108" name="user_info_7" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="109" name="user_info_8" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="110" name="user_info_9" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3001" name="block_info_0" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3002" name="block_info_1" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3003" name="block_info_2" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3004" name="block_info_3" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3005" name="block_info_4" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3006" name="block_info_5" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3007" name="block_info_6" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3008" name="block_info_7" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3009" name="block_info_8" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3010" name="block_info_9" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3011" name="block_info_10" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3012" name="block_info_11" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3013" name="block_info_12" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3014" name="block_info_13" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3015" name="block_info_14" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3016" name="block_info_15" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3017" name="block_info_16" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3018" name="block_info_17" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3019" name="block_info_18" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3020" name="block_info_19" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3021" name="block_info_20" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3022" name="block_info_21" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3023" name="block_info_22" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3024" name="block_info_23" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3025" name="block_info_24" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3026" name="block_info_25" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3027" name="block_info_26" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3028" name="block_info_27" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3029" name="block_info_28" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3030" name="block_info_29" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3031" name="block_info_30" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3032" name="block_info_31" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3033" name="block_info_32" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3034" name="block_info_33" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3035" name="block_info_34" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3036" name="block_info_35" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3037" name="block_info_36" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3038" name="block_info_37" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3039" name="block_info_38" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="3040" name="block_info_39" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4001" name="home_info_0" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4002" name="home_info_1" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4003" name="home_info_2" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4004" name="home_info_3" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4005" name="home_info_4" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4006" name="home_info_5" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4007" name="home_info_6" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4008" name="home_info_7" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4009" name="home_info_8" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="4010" name="home_info_9" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_user" />
+        <Db index="1001" name="db_hk4e_local" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_config" />
+        <Db index="1002" name="db_hk4e_global" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_global_deploy" />
+        <Db index="2001" name="db_hk4e_order" host="10.0.0.2" port="3306" user="root" pwd="Ys@2022!!!" dbname="db_hk4e_order" />
+    </MysqlConf>
+    <RedisConf>
+        <Db index="1" name="player_status" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="2" name="mail_box" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="3" name="offline_msg" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="4" name="player_friend" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="5" name="player_ask_friend" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="6" name="player_brief" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="7" name="player_blacklist" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="8" name="player_private_chat" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="9" name="player_recent_chat" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="10" name="player_private_chat_unread" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="11" name="player_activity_social" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="12" name="home_status" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="13" name="home_brief" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="14" name="home_offline_msg" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="15" name="offline_op" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="16" name="custom_dungeon" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="17" name="player_psn_friend" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="18" name="player_psn_blacklist" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+        <Db index="19" name="home_blueprint" host="10.0.0.3" port="6379" pwd="Ys@2022!!!" db="7" is_cluster="false" />
+    </RedisConf>
+    <!-- 数据库额外配置 扩容操作相关 -->
+    <MysqlExtraConf player_db_count="10" home_db_count="10" is_judge_user_db_delete="true" />
+    <!-- 分区配置 -->
+    <RegionConf name="dev_docker" />
+    <ServiceList>
+        <Nodeserver name="nodeserver" thread_num="2" />
+    </ServiceList>
+    <!--
+     进程列表配置
+     1. 查询本进程要开放的端口
+     2. 与目标进程建立连接时，通过app_id查询
+    -->
+    <AppList>
+        <App app_id="999.1.1.1">
+            <Port name="port_player" port="10101" />
+        </App>
+        <App app_id="999.2.1.1">
+            <Port name="port_gt" port="10102" />
+        </App>
+        <App app_id="999.3.1.1">
+            <Port name="port_service" port="10103" />
+        </App>
+        <App app_id="999.4.1.1" />
+        <App app_id="999.5.1.1">
+            <Port name="port_gt" port="10115" />
+            <Port name="port_http" port="10105" />
+        </App>
+        <App app_id="999.6.1.1">
+            <Port name="port_http" port="10106" />
+        </App>
+        <App app_id="999.7.1.1" />
+        <App app_id="999.8.1.1">
+            <Port name="port_gt" port="10109" />
+        </App>
+        <App app_id="999.9.1.1">
+            <Port name="port_http" port="10108" />
+        </App>
+        <App app_id="999.10.1.1">
+            <Port name="port_gt" port="10110" />
+        </App>
+    </AppList>
+    <!--
+     机器列表配置, 两个功能
+     1 进程通过inner_ip查询自己的server_id，即每台机器的唯一标识
+     2 对于内部服务，只有这些机器可以连接
+    -->
+    <ServerList>
+        <Server id="1" host="10.0.0.103" inner_ip="10.0.0.103" outer_ip="127.0.0.1" />
+    </ServerList>
+    <AppHostCheck check_inner_ip="true" />
+    <MysqlPoolMaxSize value="0" />
+    <RedisPoolMaxSize value="0" />
+    <Tracing service_name="nodeserver" enabled="false" />
+    <MemPerfConfig force_open="true" output_interval="1800" black_list="proto Watcher WeakptrObserver Event Ability Impl Comp Handler data::" white_list="BuffComp EquipComp GatherComp ActorAbility">
+        <MemPerfAppList />
+    </MemPerfConfig>
+    <CmdReportConfig force_open="true" output_interval="10">
+        <CmdReportAppList />
+    </CmdReportConfig>
+    <MonitorReport port="1056" svn_report_interval="0" />
+    <DataReadConfig is_readlink="true" />
+    <TCMallocConfig output_tcmalloc_interval="30" tcmalloc_free_interval="0" />
+    <AutoReloadConfig interval="-1" />
+    <!-- Service每帧处理协议数量配置：0表示不做限制每帧把队列中的所有协议都处理完 -->
+    <ServiceProcessPacketCountMax value="0" />
+</Root>

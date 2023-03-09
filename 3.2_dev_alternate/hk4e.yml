@@ -1,0 +1,310 @@
+networks:
+  hk4e:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/24
+          gateway: 10.0.0.1
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Ys!2022!!!
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.4
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/mongo:/data/db
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: unless-stopped
+    healthcheck:
+      test: [ 'CMD', 'mysqladmin', 'ping', '-h', 'localhost' ]
+      timeout: 20s
+      retries: 10
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: 'Ys@2022!!!'
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.2
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data/hk4e_database.sql:/docker-entrypoint-initdb.d/hk4e_database.sql:ro
+      - ./data/mysql:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: unless-stopped
+    healthcheck:
+      test: [ 'CMD', 'redis-cli', 'ping' ]
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.3
+    ports:
+      - 6379:6379
+    volumes:
+      - ./data/redis:/data
+    command: redis-server --requirepass 'Ys@2022!!!'
+  gateserver:
+    build: .
+    image: hk4e/ubuntu
+    container_name: gateserver
+    restart: unless-stopped
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      gameserver: { condition: service_started }
+      dispatch: { condition: service_started }
+      pathfindingserver: { condition: service_started }
+      tothemoonserver: { condition: service_started }
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.101
+    ports:
+      - 10101:10101/tcp
+      - 10101:10101/udp
+    volumes:
+      - ./bin/3.2_beta/hk4e_output/lib/libasan.so.5:/lib/libasan.so.5:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libgcc_s.so.1:/lib/libgcc_s.so.1:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libstdc++.so.6:/lib/libstdc++.so.6:ro
+      - ./bin/3.2_beta/hk4e_output/gateserver/gateserver:/app/gateserver:ro
+      - ./config/gateserver.xml:/app/conf/gateserver.xml:ro
+      - ./data/welink_3.2_qa:/data:ro
+      - ./data/res:/res
+      - ./logs:/app/log
+    command: ./gateserver -i 999.1.1.1
+  gameserver:
+    build: .
+    image: hk4e/ubuntu
+    container_name: gameserver
+    restart: unless-stopped
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      nodeserver: { condition: service_started }
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.102
+    expose:
+      - 10102
+    volumes:
+      - ./bin/3.2_beta/hk4e_output/lib/libasan.so.5:/lib/libasan.so.5:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libgcc_s.so.1:/lib/libgcc_s.so.1:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libstdc++.so.6:/lib/libstdc++.so.6:ro
+      - ./bin/3.2_beta/hk4e_output/gameserver/gameserver:/app/gameserver:ro
+      - ./config/gameserver.xml:/app/conf/gameserver.xml:ro
+      - ./data/welink_3.2_qa:/data:ro
+      - ./data/res:/res
+      - ./logs:/app/log
+    command: ./gameserver -i 999.2.1.1
+  nodeserver:
+    build: .
+    image: hk4e/ubuntu
+    container_name: nodeserver
+    restart: unless-stopped
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.103
+    expose:
+      - 10103
+    volumes:
+      - ./bin/3.2_beta/hk4e_output/lib/libasan.so.5:/lib/libasan.so.5:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libgcc_s.so.1:/lib/libgcc_s.so.1:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libstdc++.so.6:/lib/libstdc++.so.6:ro
+      - ./bin/3.2_beta/hk4e_output/nodeserver/nodeserver:/app/nodeserver:ro
+      - ./config/nodeserver.xml:/app/conf/nodeserver.xml:ro
+      - ./data/welink_3.2_qa:/data:ro
+      - ./data/res:/res
+      - ./logs:/app/log
+    command: ./nodeserver -i 999.3.1.1
+  dbgate:
+    build: .
+    image: hk4e/ubuntu
+    container_name: dbgate
+    restart: unless-stopped
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      nodeserver: { condition: service_started }
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.104
+    volumes:
+      - ./bin/3.2_beta/hk4e_output/lib/libasan.so.5:/lib/libasan.so.5:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libgcc_s.so.1:/lib/libgcc_s.so.1:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libstdc++.so.6:/lib/libstdc++.so.6:ro
+      - ./bin/3.2_beta/hk4e_output/dbgate/dbgate:/app/dbgate:ro
+      - ./config/dbgate.xml:/app/conf/dbgate.xml:ro
+      - ./data/welink_3.2_qa:/data:ro
+      - ./data/res:/res
+      - ./logs:/app/log
+    command: ./dbgate -i 999.4.1.1
+  dispatch:
+    build: .
+    image: hk4e/ubuntu
+    container_name: dispatch
+    restart: unless-stopped
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.105
+    ports:
+      - 10105:10105
+      - 10115:10115
+    volumes:
+      - ./bin/3.2_beta/hk4e_output/lib/libasan.so.5:/lib/libasan.so.5:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libgcc_s.so.1:/lib/libgcc_s.so.1:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libstdc++.so.6:/lib/libstdc++.so.6:ro
+      - ./bin/3.2_beta/hk4e_output/dispatch/dispatch:/app/dispatch:ro
+      - ./config/dispatch.xml:/app/conf/dispatch.xml:ro
+      - ./data/welink_3.2_qa:/data:ro
+      - ./data/res:/res
+      - ./logs:/app/log
+    command: ./dispatch -i 999.5.1.1
+  muipserver:
+    build: .
+    image: hk4e/ubuntu
+    container_name: muipserver
+    restart: unless-stopped
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      nodeserver: { condition: service_started }
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.106
+    ports:
+      - 10106:10106
+    volumes:
+      - ./bin/3.2_beta/hk4e_output/lib/libasan.so.5:/lib/libasan.so.5:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libgcc_s.so.1:/lib/libgcc_s.so.1:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libstdc++.so.6:/lib/libstdc++.so.6:ro
+      - ./bin/3.2_beta/hk4e_output/muipserver/muipserver:/app/muipserver:ro
+      - ./config/muipserver.xml:/app/conf/muipserver.xml:ro
+      - ./data/welink_3.2_qa:/data:ro
+      - ./data/res:/res
+      - ./logs:/app/log
+    command: ./muipserver -i 999.6.1.1
+  multiserver:
+    build: .
+    image: hk4e/ubuntu
+    container_name: multiserver
+    restart: unless-stopped
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      nodeserver: { condition: service_started }
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.107
+    volumes:
+      - ./bin/3.2_beta/hk4e_output/lib/libasan.so.5:/lib/libasan.so.5:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libgcc_s.so.1:/lib/libgcc_s.so.1:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libstdc++.so.6:/lib/libstdc++.so.6:ro
+      - ./bin/3.2_beta/hk4e_output/multiserver/multiserver:/app/multiserver:ro
+      - ./config/multiserver.xml:/app/conf/multiserver.xml:ro
+      - ./data/welink_3.2_qa:/data:ro
+      - ./data/res:/res
+      - ./logs:/app/log
+    command: ./multiserver -i 999.7.1.1
+  pathfindingserver:
+    build: .
+    image: hk4e/ubuntu
+    container_name: pathfindingserver
+    restart: unless-stopped
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.108
+    expose:
+      - 10108
+    volumes:
+      - ./bin/3.2_beta/hk4e_output/lib/libasan.so.5:/lib/libasan.so.5:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libgcc_s.so.1:/lib/libgcc_s.so.1:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libstdc++.so.6:/lib/libstdc++.so.6:ro
+      - ./bin/3.2_beta/hk4e_output/pathfindingserver/pathfindingserver:/app/pathfindingserver:ro
+      - ./config/pathfindingserver.xml:/app/conf/pathfindingserver.xml:ro
+      - ./data/welink_3.2_qa:/data:ro
+      - ./data/res:/res
+      - ./logs:/app/log
+    command: ./pathfindingserver -i 999.8.1.1
+  oaserver:
+    build: .
+    image: hk4e/ubuntu
+    container_name: oaserver
+    restart: unless-stopped
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      nodeserver: { condition: service_started }
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.109
+    ports:
+      - 10109:10109
+    volumes:
+      - ./bin/3.2_beta/hk4e_output/lib/libasan.so.5:/lib/libasan.so.5:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libgcc_s.so.1:/lib/libgcc_s.so.1:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libstdc++.so.6:/lib/libstdc++.so.6:ro
+      - ./bin/3.2_beta/hk4e_output/oaserver/oaserver:/app/oaserver:ro
+      - ./config/oaserver.xml:/app/conf/oaserver.xml:ro
+      - ./data/welink_3.2_qa:/data:ro
+      - ./data/res:/res
+      - ./logs:/app/log
+    command: ./oaserver -i 999.9.1.1
+  tothemoonserver:
+    build: .
+    image: hk4e/ubuntu
+    container_name: tothemoonserver
+    restart: unless-stopped
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.110
+    expose:
+      - 10110
+    volumes:
+      - ./bin/3.2_beta/hk4e_output/lib/libasan.so.5:/lib/libasan.so.5:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libgcc_s.so.1:/lib/libgcc_s.so.1:ro
+      - ./bin/3.2_beta/hk4e_output/lib/libstdc++.so.6:/lib/libstdc++.so.6:ro
+      - ./bin/3.2_beta/hk4e_output/tothemoonserver/tothemoonserver:/app/tothemoonserver:ro
+      - ./config/tothemoonserver.xml:/app/conf/tothemoonserver.xml:ro
+      - ./data/welink_3.2_qa:/data:ro
+      - ./data/res:/res
+      - ./logs:/app/log
+    command: ./tothemoonserver -i 999.10.1.1
+  loginserver:
+    image: hk4e/ubuntu
+    container_name: loginserver
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    depends_on:
+      - mongo
+    networks:
+      hk4e:
+        ipv4_address: 10.0.0.199
+    ports:
+      - 5000:5000
+      - 443:443
+    volumes:
+      - ./bin/loginserver:/app
+    command: /app/start.sh

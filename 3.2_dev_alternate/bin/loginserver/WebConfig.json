@@ -1,0 +1,70 @@
+{
+  "Kestrel": {
+    "Endpoints": {
+      "Https": {
+        "Certificate": {
+          "Path": "./keystore.p12",
+          "Password": "123456"
+        },
+        "Url": "https://0.0.0.0:443",
+        "ClientCertificateMode": "NoCertificate",
+        "SslProtocols": [
+          "Tls12",
+          "Tls13"
+        ]
+      },
+      "Http": {
+        "Url": "http://0.0.0.0:5000"
+      }
+    }
+  },
+  "Server": {
+    "EnforceEncryption": true,
+    "LogCommands": false,
+    "Policies": {
+      "Cors": {
+        "Enabled": false,
+        "AllowedOrigins": [
+          "*"
+        ]
+      }
+    },
+    "Files": {
+      "IndexFile": "./index.html",
+      "ErrorFile": "./404.html"
+    },
+    "Account": {
+      "UsePassword": false,
+      "AutoCreate": true,
+      "DefaultPermissions": [],
+      "MaxAccount": -1
+    },
+    "LogPackets": "NONE",
+    "Dispatch": {
+      "Regions": [
+        {
+          "Name": "dev_docker",
+          "Title": "Development",
+          "Ip": "127.0.0.1",
+          "Port": 10105
+        }
+      ],
+      "DefaultName": "Weedwacker"
+    }
+  },
+  "Database": {
+    "ConnectionUri": "mongodb://root:Ys!2022!!!@10.0.0.4:27017",
+    "Database": "weedwackerWeb"
+  },
+  "structure": {
+    "data": "./data/",
+    "plugins": "./plugins/",
+    "keys": "./keys/"
+  },
+  "language": {
+    "language": "en-CA",
+    "fallback": "en-US",
+    "document": "EN"
+  },
+  "version": "1.1"
+}

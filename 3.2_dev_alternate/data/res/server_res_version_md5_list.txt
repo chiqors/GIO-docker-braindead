@@ -1,0 +1,7 @@
+{"remoteName": "res_versions_external", "md5": "95d18c18e5ff40d168f91e13567a4e1b", "fileSize": 721480}
+{"remoteName": "res_versions_medium", "md5": "36192e13cf21ac19332a7d8d61f9c369", "fileSize": 310613}
+{"remoteName": "res_versions_streaming", "md5": "476a7205af5f7e8d55e005043ed4e169", "fileSize": 76846}
+{"remoteName": "release_res_versions_external", "md5": "a4e5d6433bcf39bc8aeebf6ad78e1645", "fileSize": 721480}
+{"remoteName": "release_res_versions_medium", "md5": "947fe60e80890698a74395a2b4dda9bf", "fileSize": 310613}
+{"remoteName": "release_res_versions_streaming", "md5": "212b725641e6921be73a324305ef8d61", "fileSize": 76846}
+{"remoteName": "base_revision", "md5": "66c91ca49ddca2f22323ddfeac761bf3", "fileSize": 19}
