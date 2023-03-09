@@ -46,6 +46,8 @@ def log_sdk_upload():
 # sdk config
 @app.route('/shield/api/loadConfig', methods = ['POST'])
 @app.route('/mdk/shield/api/loadConfig', methods = ['POST'])
+@app.route('/hk4e_global/shield/api/loadConfig', methods = ['POST'])
+@app.route('/hk4e_cn/mdk/shield/api/loadConfig', methods = ['POST'])
 def mdk_shield_api_loadConfig():
    return json_rsp_with_msg(define.RES_SUCCESS, "OK", {
       "data": {
@@ -59,6 +61,8 @@ def mdk_shield_api_loadConfig():
       }
    })
 
+@app.route('/hk4e_global/combo/granter/api/getProtocol', methods = ['GET'])
+@app.route('/hk4e_cn/combo/granter/api/getProtocol', methods = ['GET'])
 @app.route('/combo/granter/api/getProtocol', methods = ['GET'])
 def combo_granter_api_getProtocol():
    return json_rsp_with_msg(define.RES_SUCCESS, "OK", {
@@ -68,6 +72,8 @@ def combo_granter_api_getProtocol():
       }
    })
 
+@app.route('/hk4e_global/combo/granter/api/getProtocol', methods = ['GET'])
+@app.route('/hk4e_cn/combo/granter/api/getProtocol', methods = ['GET'])
 @app.route('/combo/granter/api/getConfig', methods = ['GET'])
 def combo_granter_api_getConfig():
    return json_rsp_with_msg(define.RES_SUCCESS, "OK", {
@@ -90,6 +96,8 @@ def combo_box_api_config_sdk_combo():
 
 
 # sdk account
+@app.route('/hk4e_cn/mdk/guest/guest/login', methods = ['POST'])
+@app.route('/hk4e_global/mdk/guest/guest/login', methods = ['POST'])
 @app.route('/mdk/guest/guest/login', methods = ['POST'])
 def mdk_guest_login():
    if not get_config()["auth"]["enable_server_guest"]:
@@ -120,6 +128,8 @@ def mdk_guest_login():
       print(f"Unexpected {err=}, {type(err)=} while handling guest login event")
       return json_rsp_with_msg(define.RES_FAIL, "System error; please try again later.", {})
 
+@app.route('/hk4e_cn/mdk/shield/api/login', methods = ['POST'])
+@app.route('/hk4e_global/mdk/shield/api/login', methods = ['POST'])
 @app.route('/mdk/shield/api/login', methods = ['POST'])
 def mdk_shield_api_login():
    try:
@@ -161,6 +171,8 @@ def mdk_shield_api_login():
       print(f"Unexpected {err=}, {type(err)=} while handling shield login event")
       return json_rsp_with_msg(define.RES_FAIL, "System error; please try again later.", {})
 
+@app.route('/hk4e_cn/mdk/shield/api/verify', methods = ['POST'])
+@app.route('/hk4e_global/mdk/shield/api/verify', methods = ['POST'])
 @app.route('/mdk/shield/api/verify', methods = ['POST'])
 def mdk_shield_api_verify():
    try:
@@ -195,6 +207,7 @@ def mdk_shield_api_verify():
       print(f"Unexpected {err=}, {type(err)=} while handling shield verify event")
       return json_rsp_with_msg(define.RES_FAIL, "System error; please try again later.", {})
 
+@app.route('/hk4e_global/combo/granter/login/v2/login', methods = ['POST'])
 @app.route('/combo/granter/login/login', methods = ['POST'])
 def combo_granter_login_login():
    try:

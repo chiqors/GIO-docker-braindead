@@ -306,9 +306,7 @@ def combo_granter_login_v2_login():
       return json_rsp_with_msg(define.RES_SUCCESS, "OK", {
          "data": {
             "account_type": user["type"],
-            "data": {
-               "guest": True if data["guest"] else False
-            },
+            "data": json.dumps({"guest": True if data["guest"] else False}, separators=(',', ':')),
             "fatigue_remind": None, # CN only; shows in-game reminder if playing too long
             "heartbeat": False, # CN only; forces game to send heartbeats so server can enforce maximum play time
             "open_id": data["uid"],
