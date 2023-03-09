@@ -8,8 +8,14 @@ from config import get_config
 
 def get_country_for_ip(ip):
    with geoip2.database.Reader(define.GEOIP2_DB_PATH) as reader:
-      response = reader.country(ip)
-      return response.country.iso_code or None
+      try:
+         return reader.country(ip).country.iso_code
+      except geoip2.errors.AddressNotFoundError:
+         pass
+      except geoip2.errors.GeoIP2Error as err:
+         print(f"Unexpected {err=} while resolving country code for {ip=}")
+         pass
+   return None
 
 def request_ip(request):
    return request.remote_addr
