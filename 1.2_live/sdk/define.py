@@ -1,0 +1,83 @@
+# directory
+CONFIG_FILE_PATH = "./data/config.json"
+DB_PATH = "./data/sdk.db"
+SHOPWINDOW_TIERS_PATH = "./data/shopwindow/tiers.json"
+GEOIP2_DB_PATH = "./data/GeoLite2-Country.mmdb"
+MI18N_PATH = './data/mi18n'
+GACHA_SCHEDULE_PATH = './data/gacha/schedule'
+GACHA_TEXTMAP_PATH = './data/gacha/textmap'
+
+
+# account
+ACCOUNT_TYPE_GUEST = 0
+ACCOUNT_TYPE_NORMAL = 1
+
+
+# channel
+CHANNEL_ID_MIHOYO = 1
+CHANNEL_ID_BILIBILI = 14
+
+
+# scenes
+SCENE_NORMAL = "S_NORMAL" # mobile + account; default to mobile
+SCENE_ACCOUNT = "S_ACCOUNT" # mobile + account; default to account
+SCENE_USER = "S_USER" # account only
+SCENE_TEMPLE = "S_TEMPLE" # account only; no registration
+
+
+# platform
+PLATFORM_TYPE = {
+   0: "EDITOR",
+   1: "IOS",
+   2: "ANDROID",
+   3: "PC",
+   4: "PS4",
+   5: "SERVER",
+   6: "CLOUD_ANDROID",
+   7: "CLOUD_IOS",
+   8: "PS5",
+   9: "CLOUD_WEB",
+   10: "CLOUD_TV",
+   11: "CLOUD_MAC",
+   12: "CLOUD_PC",
+   13: "CLOUD_THIRD_PARTY_MOBILE",
+   14: "CLOUD_THIRD_PARTY_PC"
+}
+
+
+# response
+RES_SUCCESS = 0
+RES_FAIL = -1
+RES_CANCEL = -2
+RES_NO_SUCH_METHOD = -10
+RES_LOGIN_BASE = -100
+RES_LOGIN_FAILED = -101
+RES_LOGIN_CANCEL = -102
+RES_LOGIN_ERROR = -103
+RES_LOGOUT_FAILED = -104
+RES_LOGOUT_CANCEL = -105
+RES_LOGOUT_ERROR = 106
+RES_PAY_FAILED = -107
+RES_PAY_CANCEL = -108
+RES_PAY_ERROR = -109
+RES_PAY_LAUNCH = -120
+RES_PAY_UNKNOWN = -116
+RES_EXIT_FAILED = -110
+RES_EXIT_NO_DIALOG = -111
+RES_EXIT_CANCEL = -112
+RES_EXIT_ERROR = -113
+RES_INIT_FAILED = -114
+RES_INIT_ERROR = -115
+RES_LOGIN_FORBIDDED = -117
+RES_NEED_REALNAME = -118
+RES_NEED_GUARDIAN = -119
+RES_EOS_DLL_ERROR = -1001
+RES_EOS_TOKEN_ERROR = -1002
+RES_GOOGLE_PC_TOKEN_ERROR = -1003
+
+RES_SDK_VERIFY_SUCC = 0
+RES_SDK_VERIFY_FAIL = 1
+
+
+# risky
+RISKY_ACTION_NONE = "ACTION_NONE"

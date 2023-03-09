@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+    <BuildVersion value="202211072122" />
+    <!-- 日志配置 -->
+    <LogConf>
+        <LogLevelMask value="DEBUG" />
+        <MaxLogLen value="8192" />
+        <LogCutTime value="1440" />
+        <LogKeepTime value="4320" />
+        <LogQueueSize value="512" />
+        <LogBufSize value="2048" />
+        <LogList>
+            <DebugFile path="log/oaserver.log" level="DEBUG INFO WARNING ERROR FATAL" />
+            <WarningFile path="log/oaserver.warning.log" level="WARNING ERROR FATAL" />
+            <ErrorFile path="log/oaserver.error.log" level="ERROR FATAL" />
+            <CmdFile path="log/oaserver.cmd.log" level="CMD" />
+            <OrderFile path="log/order.stat.log" level="ORDER_STAT" />
+        </LogList>
+    </LogConf>
+
+
+    <!-- 网络配置 -->
+    <NetConf>
+        <NodeserverClientConf>
+            <RecvBufLen   value="300" />
+            <MaxSendPacketLen value="250" />
+            <ThreadNum value="1" />
+            <KeepAliveSec value="10" />
+            <TimeoutSec   value="30" />
+            <CutPacket    value="1" />
+            <ConnectList>
+                <Connect app_id="1003.3.3.1" ip="172.10.3.3" port="21121"/>
+            </ConnectList>
+            <NoDelay value="true" />
+            <AsyncSend value="true" CachePacketMaxNum="30000" />
+            <Reconnect min_interval="1000" max_interval="3000" />
+        </NodeserverClientConf>
+
+        <!-- API服务 -->
+        <HttpServerConf>
+            <RecvBufLen value="16" />
+            <ThreadNum value="2" />
+            <KeepAliveSec value="0" />
+            <TimeoutSec value="30" />
+            <MaxConnNum value="4096" />
+            <CutPacket value="0" />
+            <Backlog value="2048" />
+        </HttpServerConf>
+    </NetConf>
+
+    <!-- 数据库配置 -->
+    <MysqlConf> 
+        <Db index="1" name="user_id" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="2" name="online_id" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3" name="psn_online_id" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="101" name="user_info_0" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="102" name="user_info_1" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="103" name="user_info_2" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="104" name="user_info_3" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="105" name="user_info_4" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="106" name="user_info_5" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="107" name="user_info_6" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="108" name="user_info_7" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="109" name="user_info_8" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="110" name="user_info_9" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="111" name="user_info_10" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="112" name="user_info_11" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="113" name="user_info_12" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="114" name="user_info_13" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="115" name="user_info_14" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="116" name="user_info_15" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="117" name="user_info_16" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="118" name="user_info_17" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="119" name="user_info_18" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="120" name="user_info_19" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="121" name="user_info_20" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="122" name="user_info_21" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="123" name="user_info_22" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="124" name="user_info_23" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="125" name="user_info_24" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="126" name="user_info_25" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="127" name="user_info_26" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="128" name="user_info_27" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="129" name="user_info_28" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="130" name="user_info_29" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="131" name="user_info_30" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="132" name="user_info_31" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="133" name="user_info_32" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="134" name="user_info_33" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="135" name="user_info_34" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="136" name="user_info_35" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="137" name="user_info_36" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="138" name="user_info_37" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="139" name="user_info_38" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="140" name="user_info_39" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3001" name="block_info_0" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3002" name="block_info_1" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3003" name="block_info_2" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3004" name="block_info_3" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3005" name="block_info_4" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3006" name="block_info_5" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3007" name="block_info_6" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3008" name="block_info_7" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3009" name="block_info_8" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3010" name="block_info_9" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3011" name="block_info_10" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3012" name="block_info_11" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3013" name="block_info_12" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3014" name="block_info_13" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3015" name="block_info_14" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3016" name="block_info_15" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3017" name="block_info_16" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3018" name="block_info_17" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3019" name="block_info_18" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3020" name="block_info_19" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3021" name="block_info_20" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3022" name="block_info_21" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3023" name="block_info_22" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3024" name="block_info_23" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3025" name="block_info_24" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3026" name="block_info_25" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3027" name="block_info_26" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3028" name="block_info_27" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3029" name="block_info_28" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3030" name="block_info_29" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3031" name="block_info_30" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3032" name="block_info_31" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3033" name="block_info_32" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3034" name="block_info_33" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3035" name="block_info_34" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3036" name="block_info_35" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3037" name="block_info_36" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3038" name="block_info_37" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3039" name="block_info_38" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="3040" name="block_info_39" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4001" name="home_info_0" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4002" name="home_info_1" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4003" name="home_info_2" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4004" name="home_info_3" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4005" name="home_info_4" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4006" name="home_info_5" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4007" name="home_info_6" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4008" name="home_info_7" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4009" name="home_info_8" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4010" name="home_info_9" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4011" name="home_info_10" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4012" name="home_info_11" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4013" name="home_info_12" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4014" name="home_info_13" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4015" name="home_info_14" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4016" name="home_info_15" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4017" name="home_info_16" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4018" name="home_info_17" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4019" name="home_info_18" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4020" name="home_info_19" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4021" name="home_info_20" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4022" name="home_info_21" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4023" name="home_info_22" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4024" name="home_info_23" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4025" name="home_info_24" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4026" name="home_info_25" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4027" name="home_info_26" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4028" name="home_info_27" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4029" name="home_info_28" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4030" name="home_info_29" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4031" name="home_info_30" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4032" name="home_info_31" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4033" name="home_info_32" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4034" name="home_info_33" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4035" name="home_info_34" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4036" name="home_info_35" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4037" name="home_info_36" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4038" name="home_info_37" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4039" name="home_info_38" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="4040" name="home_info_39" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_user" />
+        <Db index="1001" name="" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_config" />
+        <Db index="1002" name="" host="172.10.3.100" port="3306" user="hk4e_readonly" pwd="miHoYo2012" dbname="hk4e_db_deploy_config" />
+        <Db index="2001" name="" host="172.10.3.100" port="3306" user="hk4e_work" pwd="miHoYo2012" dbname="hk4e_db_order" />
+    </MysqlConf>
+    <RedisConf>
+        <Db index="1" name="player_status" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="2" name="mail_box" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="3" name="offline_msg" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="4" name="player_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="5" name="player_ask_friend" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="6" name="player_brief" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="7" name="player_blacklist" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="8" name="player_private_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="9" name="player_recent_chat" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="10" name="player_private_chat_unread" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+        <Db index="11" name="player_activity_social" host="172.10.3.101" port="6379" pwd="miHoYo2012" db="7" is_cluster="false" />
+    </RedisConf>
+
+    <!-- 分区配置 分区名, 是否是提审服,是否是国服 -->
+    <RegionConf name="dev_gio" is_audit="false" sandbox_recharge="true" is_internal_server="true" />
+
+    <ServiceList>
+        <Oaserver name="oaserver" thread_num="2" >
+            <StatLog stat_log_level="ORDER_STAT" thread_name="stat_log" stat_log_soft_limit="10000" stat_log_limit="20000" max_wait_time_us="1000000" max_busy_time_us="1000000" />
+        </Oaserver>
+    </ServiceList>
+
+    <!--
+     进程列表配置
+     1. 查询本进程要开放的端口
+     2. 与目标进程建立连接时，通过app_id查询
+    -->
+    <AppList>
+        <App app_id="1003.1.1.1" >
+            <Port name="port_player" port="21081"/>
+        </App>
+        <App app_id="1003.2.2.1" >
+            <Port name="port_gt" port="21111"/>
+        </App>
+        <App app_id="1003.3.3.1" >
+            <Port name="port_service" port="21121"/>
+        </App>
+        <App app_id="1003.4.4.1" >
+        </App>
+        <App app_id="1003.5.5.1" >
+            <Port name="port_gt" port="21061"/>
+            <Port name="port_http" port="21041"/>
+        </App>
+        <App app_id="1003.6.6.1" >
+            <Port name="port_http" port="21051"/>
+        </App>
+        <App app_id="1003.7.7.1" >
+        </App>
+        <App app_id="1003.8.8.1" >
+            <Port name="port_gt" port="21101"/>
+        </App>
+        <App app_id="1003.9.9.1" >
+            <Port name="port_http" port="21091"/>
+        </App>
+    </AppList>
+
+    <!--
+     机器列表配置, 两个功能
+     1 进程通过inner_ip查询自己的server_id，即每台机器的唯一标识
+     2 对于内部服务，只有这些机器可以连接
+    -->
+    <ServerList>
+        <Server id="1" host="172.10.3.1" inner_ip="172.10.3.1" outer_ip="%OUTER_IP%" />
+        <Server id="2" host="172.10.3.2" inner_ip="172.10.3.2" outer_ip="%OUTER_IP%" />
+        <Server id="3" host="172.10.3.3" inner_ip="172.10.3.3" outer_ip="%OUTER_IP%" />
+        <Server id="4" host="172.10.3.4" inner_ip="172.10.3.4" outer_ip="%OUTER_IP%" />
+        <Server id="5" host="172.10.3.5" inner_ip="172.10.3.5" outer_ip="%OUTER_IP%" />
+        <Server id="6" host="172.10.3.6" inner_ip="172.10.3.6" outer_ip="%OUTER_IP%" />
+        <Server id="7" host="172.10.3.7" inner_ip="172.10.3.7" outer_ip="%OUTER_IP%" />
+        <Server id="8" host="172.10.3.8" inner_ip="172.10.3.8" outer_ip="%OUTER_IP%" />
+        <Server id="9" host="172.10.3.9" inner_ip="172.10.3.9" outer_ip="%OUTER_IP%" />
+    </ServerList>
+
+    <AppHostCheck check_inner_ip="true" />
+
+    <MysqlPoolMaxSize value ="0" />
+    <RedisPoolMaxSize value ="0" />
+    <Tracing service_name ="oaserver" enabled="false"/>
+    <MemPerfConfig force_open="false" output_interval="1800" 
+       black_list="proto Watcher WeakptrObserver Event Ability Impl Comp Handler data::" white_list="BuffComp EquipComp GatherComp ActorAbility">
+      <MemPerfAppList>
+      </MemPerfAppList>
+    </MemPerfConfig>
+    <CmdReportConfig force_open="false" output_interval="10">
+      <CmdReportAppList>
+      </CmdReportAppList>
+    </CmdReportConfig>
+	<MonitorReport port="1056" svn_report_interval="0"/>
+    <DataReadConfig is_readlink="true"/>
+    <TCMallocConfig output_tcmalloc_interval="30" tcmalloc_free_interval="0"/>
+  	<AutoReloadConfig interval="1800" />
+    
+    <!-- Service每帧处理协议数量配置：0表示不做限制每帧把队列中的所有协议都处理完 -->
+    <ServiceProcessPacketCountMax value="0" />
+</Root>

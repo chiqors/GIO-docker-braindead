@@ -1,0 +1,6 @@
+# runtime
+data/sdk.db
+data/config.json
+
+# 3rd-party
+data/GeoLite2-Country.mmdb

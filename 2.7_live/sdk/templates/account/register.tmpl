@@ -1,0 +1,13 @@
+{% extends 'account/base.tmpl' %}
+
+{% block header %}Register account{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <input type="text" name="username" required="" placeholder="Username">
+    <input type="text" name="email" required="" placeholder="Email">
+    <input type="password" name="password" required="" placeholder="Password">
+    <input type="password" name="passwordv2" required="" placeholder="Confirm Password">
+    <button type="submit">Register</button>
+  </form>
+{% endblock %}
