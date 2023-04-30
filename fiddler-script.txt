@@ -1,0 +1,48 @@
+import System;
+import System.Windows.Forms;
+import Fiddler;
+import System.Text.RegularExpressions;
+
+class Handlers
+{
+    static function OnBeforeRequest(oS: Session) {
+      
+        // Enable/Disable entire script
+        //return;   
+        
+        var blocks =
+            [
+                ":8888/log",
+                "/sdk/dataUpload",
+                "/sdk/dataUpload",
+                "/common/h5log/log/batch",
+                "/crash/dataUpload"
+            ];
+        
+        for (var i = 0; i < blocks.length; i++) {
+            if (oS.uriContains(blocks[i])) {
+                oS.oRequest.FailSession(404, "Blocked", "Oh no!!!");
+            }
+        }
+     
+        
+        var redirects =
+        [
+            ".yuanshen.com",
+            ".hoyoverse.com",
+            ".mihoyo.com",
+            ".yuanshen.com:12401"
+        ];
+        
+        
+        for (var i = 0; i < redirects.length; i++) {
+            if (oS.host.EndsWith(redirects[i])) {
+                oS.host = "127.0.0.1";
+                oS.oRequest.headers.UriScheme = "http";
+                oS.port = 21000;
+                break;
+            }
+        }
+        
+    }
+};
