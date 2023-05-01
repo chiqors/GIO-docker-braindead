@@ -1,5 +1,5 @@
 ## Long start
-Read the full detailed guide in file `How to start - All guides.docx` or read the quick start below if you are very skilled
+Read the full detailed guide in file `GIO guide book for braindead` or read the quick start below if you are very skilled
 
 ## Quick start
 1. Put server bins to the `server` folder
