@@ -1,64 +1,15 @@
-## Start
+## Long start
+Read the full detailed guide in file `How to start - All guides.docx` or read the quick start below if you are very skilled
+
+## Quick start
 1. Put server bins to the `server` folder
 2. Put server data (json, lua, txt, xml, version.txt) to the `server/data` folder
 3. Run docker using `bootstrap.bat` for Windows or `bootstrap.sh` for Linux. Please don't use commands like `docker-compose up -d` or `docker compose up -d`
-4. Run fiddler, set up the fiddler script (below), use `bat`/`sh` only
-5. Make sure you patched the game using UserAssembly.dll for Grasscutter (or RSA Patch since 3.3)
+4. Run fiddler, set up the fiddler script (`fiddler-script.txt`), use `bat`/`sh` only
+5. Make sure you patched the game using UserAssembly.dll for Grasscutter (or RSA Patch since 3.3). Read the full guide if you dunno how to patch it
 6. Wait for 15-30 minutes (Yes, it isn't a joke)
 7. Run the game, play
 8. If you want to make a public server - change `OUTER_IP` in `.env` file to your server ip, delete `.bootstrap.lock` file and rerun `bat`/`sh` script
-
-## Fiddler script
-```
-import System;
-import System.Windows.Forms;
-import Fiddler;
-import System.Text.RegularExpressions;
-
-class Handlers
-{
-    static function OnBeforeRequest(oS: Session) {
-      
-        // Enable/Disable entire script
-        //return;   
-        
-        var blocks =
-            [
-                ":8888/log",
-                "/sdk/dataUpload",
-                "/sdk/dataUpload",
-                "/common/h5log/log/batch",
-                "/crash/dataUpload"
-            ];
-        
-        for (var i = 0; i < blocks.length; i++) {
-            if (oS.uriContains(blocks[i])) {
-                oS.oRequest.FailSession(404, "Blocked", "Oh no!!!");
-            }
-        }
-     
-        
-        var redirects =
-        [
-            ".yuanshen.com",
-            ".hoyoverse.com",
-            ".mihoyo.com",
-            ".yuanshen.com:12401"
-        ];
-        
-        
-        for (var i = 0; i < redirects.length; i++) {
-            if (oS.host.EndsWith(redirects[i])) {
-                oS.host = "127.0.0.1";
-                oS.oRequest.headers.UriScheme = "http";
-                oS.port = 21000;
-                break;
-            }
-        }
-        
-    }
-};
-```
 
 ## General information
 - All services use network with subnet `172.10.3.0/24`
@@ -89,3 +40,16 @@ class Handlers
 ## RSA keys
 Use patched `UserAssembly.dll`/`RSAPatch.dll`/`Metadata` for Grusscutter because these patches have same RSA keys as in the current database, see table:
 `hk4e_db.hk4e_db_deploy_config.t_rsakey_config`
+
+All RSA keys at the beginning are added to the database through a file `data.sql` (will be generated from `data.sql.tmpl`)
+
+Also you can you special RSA patcher by `Hotaru` and add key for password too, for example:
+
+### Dispatch
+```
+<RSAKeyValue><Modulus>x6DXVi3/8v/9W0kbDjAi/96yoZG30Fydk7hWxdR4dpqKP0M58aLScwmd49c1i+uUGmGNmSSP0yqH2gFr6QS3yhBTnvQ3cs1UYG/j1PAHUs263pQy5gZay7RW41G+Vm2cL1AzuXpoEQ9JXDpTbOlGwl8pin+enVSYjXAwLrOQKSVRC6vrlnjDX8ozf7mPCC8h7w2XfBfsmuL+K8UvE6KDKQshQYppjDSGi8AtsFScIUmTMmXYPjWdP+gN/iD2M/vjXQAvlunSvXkHgWJ2bo/45cfFbXlxrRfStdri3SC16yFaTR6FbPh+cwci1RSZE/G1yA4hjB4UdYrb/hsYfMpK7w==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>
+```
+### Password
+```
+<RSAKeyValue><Modulus>yeF8n3X+VkwIhAdEK6Mp9ZGMW37N9tLWAlRnLkQ/7XccC7fim0LtK4FqEZLgnRvoPj0kWEhi6lWiY8v2gPdkKXhLqyTu/Cc2Ug+Let7U9t6Ez3gIdt3m5p499mbRFhx8ZuvZb6Q9I4++UXYWEfNisWADGOBl5qJD23FnMcTzjis=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>
+```
