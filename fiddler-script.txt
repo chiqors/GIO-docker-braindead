@@ -22,6 +22,7 @@ class Handlers
         for (var i = 0; i < blocks.length; i++) {
             if (oS.uriContains(blocks[i])) {
                 oS.oRequest.FailSession(404, "Blocked", "Oh no!!!");
+                return;
             }
         }
      
