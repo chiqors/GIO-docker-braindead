@@ -14,19 +14,17 @@ class Handlers
             [
                 ":8888/log",
                 "/sdk/dataUpload",
-                "/sdk/dataUpload",
                 "/common/h5log/log/batch",
                 "/crash/dataUpload"
             ];
-        
+
         for (var i = 0; i < blocks.length; i++) {
             if (oS.uriContains(blocks[i])) {
                 oS.oRequest.FailSession(404, "Blocked", "Oh no!!!");
                 return;
             }
         }
-     
-        
+
         var redirects =
         [
             ".yuanshen.com",
@@ -34,13 +32,38 @@ class Handlers
             ".mihoyo.com",
             ".yuanshen.com:12401"
         ];
-        
-        
+
         for (var i = 0; i < redirects.length; i++) {
             if (oS.host.EndsWith(redirects[i])) {
-                oS.host = "127.0.0.1";
+
+                // For all GIO methods + Soggy (CBT1) except GrassCutter
                 oS.oRequest.headers.UriScheme = "http";
+
+                // For Yuuki servers
+                //oS.host = "de.game.yuuki.me";
+                //oS.host = "sg.game.yuuki.me";
+
+                // For GIO method 5 + Grasscutter
+                oS.host = "127.0.0.1";
+
+                // For GIO method 5
                 oS.port = 21000;
+
+                // For GIO method 1,2,3
+                //oS.host = "192.168.200.130";
+
+                // For GIO method 1,2,3
+                //oS.port = 2888;
+
+                // For other servers like Yuuki
+                //oS.port = 8080;
+
+                // For GrassCutter
+                //oS.port = 443;
+
+                // Only for Soggy (CBT1)
+                //oS.port = 8099;
+
                 break;
             }
         }
