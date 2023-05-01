@@ -202,7 +202,14 @@ INSERT INTO `t_bind_config` (`id`, `client_version`, `region_name`, `channel_id`
 (3, 'OSRELiOS0.9.9',  'dev_docker',  '1'),
 (4, 'CNRELAndroid0.9.9',  'dev_docker',  '1'),
 (5, 'CNRELWin0.9.9',  'dev_docker',  '1'),
-(6, 'CNRELiOS0.9.9',  'dev_docker',  '1');
+(6, 'CNRELiOS0.9.9',  'dev_docker',  '1'),
+(7, 'OSRELAndroid0.9.3',  'dev_docker',  '1'),
+(8,	'OSRELWin0.9.3',	'dev_docker',	'1'),
+(9, 'OSRELiOS0.9.3',  'dev_docker',  '1'),
+(10, 'CNRELAndroid0.9.3',  'dev_docker',  '1'),
+(11, 'CNRELWin0.9.3',  'dev_docker',  '1'),
+(12, 'CNRELiOS0.9.3',  'dev_docker',  '1'),
+(13, 'CNINWin0.9.3',  'dev_docker',  '1');
 
 
 CREATE TABLE `t_account_type_config` (
@@ -237,7 +244,13 @@ INSERT INTO `t_client_config` (`id`, `version`, `name`, `stop_server_config_str`
 (4, 'CNRELAndroid0.9.9',  '', '', '', '{\"sdkenv\":\"0\",\"checkdevice\":false,\"showexception\":false,\"downloadMode\":\"0\"}', 0, ''),
 (5, 'CNRELWin0.9.9',  '', '', '', '{\"sdkenv\":\"0\",\"checkdevice\":false,\"showexception\":false,\"downloadMode\":\"0\"}', 0, ''),
 (6, 'CNRELiOS0.9.9',  '', '', '', '{\"sdkenv\":\"0\",\"checkdevice\":false,\"showexception\":false,\"downloadMode\":\"0\"}', 0, '');
-
+(7,	'OSRELAndroid0.9.3',	'',	'',	'', '{\"sdkenv\":\"2\",\"checkdevice\":false,\"showexception\":false,\"downloadMode\":\"0\"}', 0, ''),
+(8, 'OSRELWin0.9.3',  '', '', '', '{\"sdkenv\":\"2\",\"checkdevice\":false,\"showexception\":false,\"downloadMode\":\"0\"}', 0, ''),
+(9, 'OSRELiOS0.9.3',  '', '', '', '{\"sdkenv\":\"2\",\"checkdevice\":false,\"showexception\":false,\"downloadMode\":\"0\"}', 0, ''),
+(10, 'CNRELAndroid0.9.3',  '', '', '', '{\"sdkenv\":\"0\",\"checkdevice\":false,\"showexception\":false,\"downloadMode\":\"0\"}', 0, ''),
+(11, 'CNRELWin0.9.3',  '', '', '', '{\"sdkenv\":\"0\",\"checkdevice\":false,\"showexception\":false,\"downloadMode\":\"0\"}', 0, ''),
+(12, 'CNRELiOS0.9.3',  '', '', '', '{\"sdkenv\":\"0\",\"checkdevice\":false,\"showexception\":false,\"downloadMode\":\"0\"}', 0, ''),
+(13, 'CNINWin0.9.3',  '', '', '', '{\"sdkenv\":\"2\",\"checkdevice\":false,\"showexception\":false,\"downloadMode\":\"0\"}', 0, '');
 
 CREATE TABLE `t_client_region_config` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
