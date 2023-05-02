@@ -9,7 +9,7 @@ Read the full detailed guide in file `GIO guide book for braindead` or read the 
 5. Make sure you patched the game using UserAssembly.dll for Grasscutter (or RSA Patch since 3.3). Read the full guide if you dunno how to patch it
 6. Wait for 15-30 minutes (Yes, it isn't a joke)
 7. Run the game, play
-8. If you want to make a public server - change `OUTER_IP` in `.env` file to your server ip, delete `.bootstrap.lock` file and rerun `bootstrap` `bat`/`sh` script (this action will erase all your database with the game progress). If you don't want to loose your progress - search `%OUTER_IP%` in `xml.tmpl` files and open related `xml` files without `.tmpl` extension and replace old IP to new IP in `.xml` files (not in `.xml.tmpl` - DON'T replace `%OUTER_IP%` in `.xml.tmpl`, edit only `.xml` files)
+8. If you want to make a public server - change `OUTER_IP` in `.env` file to your server ip, delete `.bootstrap.lock` file and rerun `bootstrap` `bat`/`sh` script (this action will erase all your database with the game progress). If you don't want to loose your progress - search `%OUTER_IP%` in `xml.tmpl` files and open related `xml` files without `.tmpl` extension and replace old IP to new IP in `.xml` files (not in `.xml.tmpl` - DON'T replace `%OUTER_IP%` in `.xml.tmpl`, edit only `.xml` files). Also search `%OUTER_IP%` in `.sql.tmpl` and see where you should change IP in real database (use phpmyadmin/adminer). DON'T replace `%OUTER_IP%` in `.sql.tmpl` - replace only in real database.
 
 ## General information
 - All services use network with subnet `172.10.3.0/24`
