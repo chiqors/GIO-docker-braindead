@@ -450,7 +450,13 @@ INSERT INTO `t_bind_config` (`id`, `client_version`, `region_name`, `channel_id`
 (3, 'OSRELiOS1.5.0',  'dev_docker',  '1'),
 (4, 'CNRELAndroid1.5.0',  'dev_docker',  '1'),
 (5, 'CNRELWin1.5.0',  'dev_docker',  '1'),
-(6, 'CNRELiOS1.5.0',  'dev_docker',  '1');
+(6, 'CNRELiOS1.5.0',  'dev_docker',  '1'),
+(7, 'OSRELAndroid1.5.1',  'dev_docker',  '1'),
+(8,	'OSRELWin1.5.1',	'dev_docker',	'1'),
+(9, 'OSRELiOS1.5.1',  'dev_docker',  '1'),
+(10, 'CNRELAndroid1.5.1',  'dev_docker',  '1'),
+(11, 'CNRELWin1.5.1',  'dev_docker',  '1'),
+(12, 'CNRELiOS1.5.1',  'dev_docker',  '1');
 
 
 CREATE TABLE `t_channel_id_config` (
@@ -493,7 +499,13 @@ INSERT INTO `t_client_config` (`id`, `version`, `name`, `stop_server_config_str`
 (3, 'OSRELiOS1.5.0',  '', '', '{\"sdkenv\":2,\"checkdevice\":false,\"loadPatch\":false,\"showexception\":false,\"regionConfig\":\"pm|fk|add\",\"downloadMode\":0,\"cah\":false}', ''),
 (4, 'CNRELAndroid1.5.0',  '', '', '{\"sdkenv\":0,\"checkdevice\":false,\"loadPatch\":false,\"showexception\":false,\"regionConfig\":\"pm|fk|add\",\"downloadMode\":0,\"cah\":false}', ''),
 (5, 'CNRELWin1.5.0',  '', '', '{\"sdkenv\":0,\"checkdevice\":false,\"loadPatch\":false,\"showexception\":false,\"regionConfig\":\"pm|fk|add\",\"downloadMode\":0,\"cah\":false}', ''),
-(6, 'CNRELiOS1.5.0',  '', '', '{\"sdkenv\":0,\"checkdevice\":false,\"loadPatch\":false,\"showexception\":false,\"regionConfig\":\"pm|fk|add\",\"downloadMode\":0,\"cah\":false}', '');
+(6, 'CNRELiOS1.5.0',  '', '', '{\"sdkenv\":0,\"checkdevice\":false,\"loadPatch\":false,\"showexception\":false,\"regionConfig\":\"pm|fk|add\",\"downloadMode\":0,\"cah\":false}', ''),
+(7,	'OSRELAndroid1.5.1',	'',	'',	'{\"sdkenv\":2,\"checkdevice\":false,\"loadPatch\":false,\"showexception\":false,\"regionConfig\":\"pm|fk|add\",\"downloadMode\":0,\"cah\":false}',	''),
+(8, 'OSRELWin1.5.1',  '', '', '{\"sdkenv\":2,\"checkdevice\":false,\"loadPatch\":false,\"showexception\":false,\"regionConfig\":\"pm|fk|add\",\"downloadMode\":0,\"cah\":false}', ''),
+(9, 'OSRELiOS1.5.1',  '', '', '{\"sdkenv\":2,\"checkdevice\":false,\"loadPatch\":false,\"showexception\":false,\"regionConfig\":\"pm|fk|add\",\"downloadMode\":0,\"cah\":false}', ''),
+(10, 'CNRELAndroid1.5.1',  '', '', '{\"sdkenv\":0,\"checkdevice\":false,\"loadPatch\":false,\"showexception\":false,\"regionConfig\":\"pm|fk|add\",\"downloadMode\":0,\"cah\":false}', ''),
+(11, 'CNRELWin1.5.1',  '', '', '{\"sdkenv\":0,\"checkdevice\":false,\"loadPatch\":false,\"showexception\":false,\"regionConfig\":\"pm|fk|add\",\"downloadMode\":0,\"cah\":false}', ''),
+(12, 'CNRELiOS1.5.1',  '', '', '{\"sdkenv\":0,\"checkdevice\":false,\"loadPatch\":false,\"showexception\":false,\"regionConfig\":\"pm|fk|add\",\"downloadMode\":0,\"cah\":false}', '');
 
 
 CREATE TABLE `t_client_region_config` (
@@ -514,7 +526,13 @@ INSERT INTO `t_client_region_config` (`id`, `client_version`, `region_name`, `cl
 (3, 'OSRELiOS1.5.0',  'dev_docker',  '{\"coverSwitch\":[4,7,8,9,18,19,21,22,27,28,29,31,32,36,37,38,40,42]}'),
 (4, 'CNRELAndroid1.5.0',  'dev_docker',  '{\"coverSwitch\":[4,7,8,9,18,19,21,22,27,28,29,31,32,36,37,38,40,42]}'),
 (5, 'CNRELWin1.5.0',  'dev_docker',  '{\"coverSwitch\":[4,7,8,9,18,19,21,22,27,28,29,31,32,36,37,38,40,42]}'),
-(6, 'CNRELiOS1.5.0',  'dev_docker',  '{\"coverSwitch\":[4,7,8,9,18,19,21,22,27,28,29,31,32,36,37,38,40,42]}');
+(6, 'CNRELiOS1.5.0',  'dev_docker',  '{\"coverSwitch\":[4,7,8,9,18,19,21,22,27,28,29,31,32,36,37,38,40,42]}'),
+(7, 'OSRELAndroid1.5.1',  'dev_docker',  '{\"coverSwitch\":[4,7,8,9,18,19,21,22,27,28,29,31,32,36,37,38,40,42]}'),
+(8,	'OSRELWin1.5.1',	'dev_docker',	'{\"coverSwitch\":[4,7,8,9,18,19,21,22,27,28,29,31,32,36,37,38,40,42]}'),
+(9, 'OSRELiOS1.5.1',  'dev_docker',  '{\"coverSwitch\":[4,7,8,9,18,19,21,22,27,28,29,31,32,36,37,38,40,42]}'),
+(10, 'CNRELAndroid1.5.1',  'dev_docker',  '{\"coverSwitch\":[4,7,8,9,18,19,21,22,27,28,29,31,32,36,37,38,40,42]}'),
+(11, 'CNRELWin1.5.1',  'dev_docker',  '{\"coverSwitch\":[4,7,8,9,18,19,21,22,27,28,29,31,32,36,37,38,40,42]}'),
+(12, 'CNRELiOS1.5.1',  'dev_docker',  '{\"coverSwitch\":[4,7,8,9,18,19,21,22,27,28,29,31,32,36,37,38,40,42]}');
 
 
 CREATE TABLE `t_deploy_textmap_config` (
