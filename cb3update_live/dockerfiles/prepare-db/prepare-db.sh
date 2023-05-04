@@ -20,6 +20,5 @@ done
 echo "Importing..."
 mysql -h172.10.3.100 -u root -p"$MYSQL_ROOT_PASSWORD" < bootstrap.sql
 mysql -h172.10.3.100 -u hk4e_work -pmiHoYo2012 < data.sql
-mysql -h172.10.3.100 -u hk4e_work -pmiHoYo2012 < adjust.sql
 
 echo "Database imported"
