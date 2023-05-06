@@ -111,14 +111,64 @@
 
     <PathfindingConf>
         <!-- 允许同时存在的最大版本数量 -->
+        <!-- The maximum number of versions allowed to exist at the same time -->
         <VersionCount value="1" />
+
         <!-- .nav所在目录 -->
+        <!-- .nav directory -->
         <DataDir name="../res/NavMesh/"/>
+
         <!-- 一个玩家世界保活时间 -->
+        <!-- One player world keepalive time -->
         <TokenKeepAliveMs value="3600000"/>
+
         <!-- 默认起点查询容许范围 -->
+        <!-- Default starting point query allowable range -->
         <SourceExtend x="5" y="1.6" z="5"/>
+
         <!-- 默认目标查询容许范围 -->
+        <!-- Default target query allowable range -->
         <TargetExtend x="5" y="3.75" z="5"/>
+
+        <!-- 检查ActivtyNavmesh是否加载/卸载的时间间隔, 单位秒 -->
+        <!-- The time interval for checking whether ActivtyNavmesh is loaded/unloaded, in seconds -->
+        <RefreshMaxInterval value="120" />
+
+        <!-- 动阻切割超时打印日志, 单位毫秒 -->
+        <!-- Dynamic resistance cutting timeout print log, in milliseconds -->
+        <ObstacleTimeLimit value="60000" />
+
+        <!-- 默认obstacle extent最大值 -->
+        <!-- The default maximum obstacle extent -->
+        <MaxObstacleExtent value="128" />
+
+        <!-- 是否启用Havok切割方案 -->
+        <!-- Whether to enable the Havok cutting scheme -->
+        <UseHavokCut value="true" />
+
+        <!-- Extend大于一定值的Obstacle打印一下Info日志, 方便定位问题-->
+        <!-- The Obstacle whose Extend is greater than a certain value prints the Info log, which is convenient for locating the problem -->
+        <ObstacleExtendLogLimit x="35" y="15" z="35"/>
+
+        <!-- 寻路请求超时打印日志, 单位毫秒 -->
+        <!-- pathfinding request timeout print log, in milliseconds -->
+        <QueryPathReqTimeLimit value="500"/>
+
+        <!-- 寻路请求容许范围限制 -->
+        <!-- pathfinding request allowable range limit -->
+        <QueryPathReqExtendLimit x="20" y="20" z="20"/>
+
+        <!-- 寻路请求容许目标点数量限制 -->
+        <!-- The limit on the number of target points allowed by the pathfinding request -->
+        <QueryPathReqTargetPointLimit value="10"/>
+
+        <!-- 每个线程记录测试数据的玩家数量 -->
+        <!-- The number of players recording test data per thread -->
+        <TestPlayerCount value="0"/>
+
+        <!-- cpu性能分析模式 0:不开启 1:只开启grafana基本分析 2:记录细节日志 -->
+        <!-- cpu performance analysis mode 0: Disable 1: Only enable grafana basic analysis 2: Record detailed logs -->
+        <!-- also you can use value="debug" -->
+        <CPUProfilingMode value="0"/>
     </PathfindingConf>
 </Root>
